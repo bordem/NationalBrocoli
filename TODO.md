@@ -1,4 +1,4 @@
-# Lists des Choses à faire 
+# Listes des Choses à faire 
 
 * Encodeurs
 * Classes
