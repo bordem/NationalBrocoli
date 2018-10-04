@@ -1,4 +1,4 @@
-#include "Motor.h"
+#include "header/motor.h"
 
 Motor::Motor(char port,pos position){
 	this->port=port;
