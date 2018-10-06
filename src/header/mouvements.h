@@ -1,4 +1,7 @@
-#pragma once
+#ifndef DEF_MOUVEMENTS
+#define DEF_MOUVEMENTS
+
+#include "motor.h"
 
 class Mouvements{
 	private:
@@ -11,3 +14,5 @@ class Mouvements{
 		void do_Path();
 		void turn90(char speed,bool orientation);
 };
+
+#endif /* end of include guard:  */

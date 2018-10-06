@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DEF_GYRO
+#define DEF_GYRO
 
 #include <vector>
 
@@ -14,3 +15,5 @@ class Gyroscope{
 		void reset();
 		unsigned double angle();
 };
+
+#endif

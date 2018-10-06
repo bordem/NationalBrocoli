@@ -1,4 +1,8 @@
-#pragma once
+#ifndef DEF_ULTRASON
+#define DEF_ULTRASON
+
+#include "../../lib/MakeBlockDrive/src/MeUltrasonicSensor.h"
+
 class Ultrason{
 	private:
 		MeUltrasonicSensor sensor;
@@ -10,3 +14,4 @@ class Ultrason{
 		float readDistance(int n=1);
 		bool obstacleAt(float n);
 };
+#endif

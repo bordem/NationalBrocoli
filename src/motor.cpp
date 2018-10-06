@@ -1,11 +1,12 @@
 #include "header/motor.h"
 
-Motor::Motor(char port,pos position){
-	this->port=port;
-	this->position=position;
+Motor::Motor(char p,pos pos,float cor){
+	port=p;
+	position=pos;
+	correction=cor;
 }
 void Motor::forward(char speed){
-	
+
 }
 void Motor::backward(char speed){
 }

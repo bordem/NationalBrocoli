@@ -1,9 +1,9 @@
-#pragma once
+#ifndef DEF_ROBOT
+#define DEF_ROBOT
 
-#include "header/gyroscope.h"
-#include "header/mouvement.h"
-#include "header/untrasound.h"
-
+#include "gyroscope.h"
+#include "mouvement.h"
+#include "ultrasound.h"
 
 class Robot{
 	private:
@@ -11,7 +11,9 @@ class Robot{
 		Mouvements move;
 		//Camera cam
 		Ultrason sound;
-		
+
 	public:
 		Robot(Gyroscop gyro,Mouvements move,Ultrason sound);
 };
+
+#endif
