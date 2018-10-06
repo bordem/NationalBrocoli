@@ -1,5 +1,8 @@
 #pragma once
 
+#include "types.h"
+#include "motor.h"
+
 class Mouvements{
 	private:
 		Motor motorLeft;

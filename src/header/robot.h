@@ -1,17 +1,19 @@
 #pragma once
 
-#include "header/gyroscope.h"
-#include "header/mouvement.h"
-#include "header/untrasound.h"
+#include "types.h"
+#include "gyroscope.h"
+#include "mouvements.h"
+#include "ultrasound.h"
+#include "motor.h"
 
 
 class Robot{
 	private:
-		Gyroscop gyro_group;
-		Mouvements move;
+		Gyroscope* gyro_group;
+		Mouvements* move;
 		//Camera cam
-		Ultrason sound;
+		Ultrason* sound;
 		
 	public:
-		Robot(Gyroscop gyro,Mouvements move,Ultrason sound);
+		Robot(Gyroscope* gyro, Mouvements* move, Ultrason* sound);
 };

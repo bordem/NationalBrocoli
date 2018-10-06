@@ -1,4 +1,8 @@
 #pragma once
+
+#include "types.h"
+#include <MeUltrasonicSensor.h>
+
 class Ultrason{
 	private:
 		MeUltrasonicSensor sensor;

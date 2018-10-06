@@ -1,20 +1,25 @@
 #pragma once
 
+#include <MeEncoderOnBoard.h>
+
+#include "types.h"
+
+enum Pos{
+	droite,
+	gauche
+};
+
 class Motor{
 
 	private:
 		MeEncoderOnBoard motor;
 		const float correction;
 		const char port;
-		pos position;
+		Pos position;
 
 	public:
-		Motor(char port,pos position);
+		Motor(char port, Pos position);
 		void forward(char speed);
 		void backward(char speed);
 
-		enum pos{
-			droite,
-			gauche
-		}
 };

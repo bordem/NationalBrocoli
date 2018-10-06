@@ -1,4 +1,5 @@
 Makefile
+makefile
 .pioenvs
 .piolibdeps
 .clang_complete
