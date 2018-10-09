@@ -13,7 +13,7 @@ class Motor{
 
 	public:
 		Motor(MeEncoderOnBoard motor,char port);
-		Motor(const Motor& M);
+		//Motor(const Motor& M);
 		void forward(char speed);
 		void backward(char speed);
 

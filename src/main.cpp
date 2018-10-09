@@ -5,7 +5,7 @@ using namespace std;
 
 int main(void ){
 
-  Serial.begin(9600);
-  init();
-  return 0;
+	Serial.begin(9600);
+	init();
+	return 0;
 }
