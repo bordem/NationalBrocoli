@@ -1,7 +1,6 @@
 #include "header/motor.h"
 
 using namespace std;
-
 // Motor::Motor(const Motor& M): motor(M.motor),correction(M.correction),port(M.port)
 // {}
 
