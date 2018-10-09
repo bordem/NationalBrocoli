@@ -1,19 +1,20 @@
 #ifndef DEF_GYRO
 #define DEF_GYRO
 
-#include <vector>
+#include "types.h"
+#include <MeGyro.h>
 
 class Gyroscope{
 	private:
-		std::vector<uchar> ports;
-		std::vector<MeGyro> sensor;
+		uchar ports[];
+		MeGyro sensor[];
 		const int gyro_nb;
 		const int iterations;
 
 	public:
-		Gyroscope(std::vector<uchar> port, int max_iter);
+		Gyroscope(uchar port[2], int max_iter);
 		void reset();
-		unsigned double angle();
+		double angle();
 };
 
 #endif

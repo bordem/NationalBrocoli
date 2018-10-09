@@ -1,7 +1,8 @@
 #ifndef DEF_ULTRASON
 #define DEF_ULTRASON
 
-#include "../../lib/MakeBlockDrive/src/MeUltrasonicSensor.h"
+#include "types.h"
+#include <MeUltrasonicSensor.h>
 
 class Ultrason{
 	private:

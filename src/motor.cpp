@@ -1,10 +1,14 @@
 #include "header/motor.h"
 
-Motor::Motor(char p,pos pos,float cor){
-	port=p;
-	position=pos;
-	correction=cor;
+using namespace std;
+
+Motor::Motor(const Motor& M): motor(M.motor),correction(M.correction),port(M.port)
+{}
+
+Motor::Motor(MeEncoderOnBoard motor,char p):motor(motor),port(p)
+{
 }
+
 void Motor::forward(char speed){
 
 }

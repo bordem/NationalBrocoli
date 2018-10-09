@@ -1,12 +1,13 @@
 #ifndef DEF_MOUVEMENTS
 #define DEF_MOUVEMENTS
 
+#include "types.h"
 #include "motor.h"
 
 class Mouvements{
 	private:
-		Motor motorLeft;
-		Motor motorRight;
+		Motor& motorLeft;
+		Motor& motorRight;
 	public:
 		Mouvements(Motor L, Motor R);
 		void backward(float distance);

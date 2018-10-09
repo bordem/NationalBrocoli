@@ -3,13 +3,9 @@
 
 using namespace std;
 
-int main(){
+int main(void ){
 
   Serial.begin(9600);
   init();
-
-  MeEncoderOnBoard M1;
-  MeEncoderOnBoard M2;
-
   return 0;
 }

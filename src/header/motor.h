@@ -1,23 +1,19 @@
 #ifndef DEF_MOTOR
 #define DEF_MOTOR
 
-#include "../../lib/MakeBlockDrive/src/MeEncoderOnBoard.h"
-
-enum pos{
-	droite,
-	gauche
-};
+#include <MeEncoderOnBoard.h>
+#include "types.h"
 
 class Motor{
-
 	private:
-		MeEncoderOnBoard motor;
+		MeEncoderOnBoard& motor;
 		float correction;
 		char port;
-		pos position;
+		//Pos position;
 
 	public:
-		Motor(char port,pos position,float correction);
+		Motor(MeEncoderOnBoard motor,char port);
+		Motor(const Motor& M);
 		void forward(char speed);
 		void backward(char speed);
 

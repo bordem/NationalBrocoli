@@ -1,6 +1,7 @@
 #include "header/mouvements.h"
 
-Mouvements::Mouvements(Motor L, Motor R){
+
+Mouvements::Mouvements(Motor L, Motor R):motorLeft(L),motorRight(R){
 }
 void Mouvements::backward(float distance){
 
