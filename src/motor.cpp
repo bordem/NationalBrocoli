@@ -1,9 +1,8 @@
 #include "header/motor.h"
 
-using namespace std;
 
-Motor::Motor(const Motor& M): motor(M.motor),correction(M.correction),port(M.port)
-{}
+//Motor::Motor(const Motor& M): motor(M.motor),correction(M.correction),port(M.port)
+//{}
 
 Motor::Motor(MeEncoderOnBoard motor,char p):motor(motor),port(p)
 {

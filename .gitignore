@@ -6,3 +6,5 @@ makefile
 .gcc-flags.json
 .travis.yml
 lib/MakeBlockDrive
+path_generator/generator
+path_generator/obj/*

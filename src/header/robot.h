@@ -9,13 +9,13 @@
 
 class Robot{
 	private:
-		Gyroscope* gyro_group;
-		Mouvements* move;
+		Gyroscope& gyro_group;
+		Mouvements& move;
 		//Camera cam
-		Ultrason* sound;
+		Ultrason& sound;
 
 	public:
-		Robot(Gyroscope* gyro, Mouvements* move, Ultrason* sound);
+		Robot(Gyroscope gyro, Mouvements move, Ultrason sound);
 };
 
 #endif
