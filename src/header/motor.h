@@ -6,14 +6,15 @@
 
 class Motor{
 	private:
-		MeEncoderOnBoard& motor;
+		MeEncoderOnBoard motor;
 		float correction;
-		char port;
-		//Pos position;
+		uint8_t port;
+		Pos position;
 
 	public:
-		Motor(MeEncoderOnBoard motor,char port);
+		Motor(uint8_t port,Pos p);
 		//Motor(const Motor& M);
+		void stop();
 		void forward(char speed);
 		void backward(char speed);
 

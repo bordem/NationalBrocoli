@@ -1,20 +1,25 @@
 #include "header/motor.h"
 
-<<<<<<< HEAD
-using namespace std;
-// Motor::Motor(const Motor& M): motor(M.motor),correction(M.correction),port(M.port)
-// {}
-=======
 
 //Motor::Motor(const Motor& M): motor(M.motor),correction(M.correction),port(M.port)
 //{}
->>>>>>> 2f932dcb6804c719702ea96af039780860e950fb
 
-Motor::Motor(MeEncoderOnBoard motor,char p):motor(motor),port(p)
-{}
+Motor::Motor(uint8_t p,Pos po):port(p),motor(p),position(po){
+}
+void Motor::stop(){
+	motor.setMotorPwm(0);
+}
 
 void Motor::forward(char speed){
-
+	if(position == gauche)
+		motor.setMotorPwm(speed);
+	else
+		motor.setMotorPwm(-speed);
 }
+
 void Motor::backward(char speed){
+	if(position == gauche)
+		motor.setMotorPwm(-speed);
+	else
+		motor.setMotorPwm(speed);
 }
