@@ -19,7 +19,7 @@ void Generator::generate(){
 	using namespace std;
 	auto prev=nodes.begin();
 	for ( auto it=++(nodes.begin()); it != nodes.end(); it++){
-		cout << "(" << prev->x << ", " << prev->y << ") -> (" << it->x << ", " << it->y << ")"; // ne marche pas bizarrement
+		cerr << "(" << prev->x << ", " << prev->y << ") -> (" << it->x << ", " << it->y << ")"; // ne marche pas bizarrement
 		switch (this->direction(*prev, *it) ){
 		case HAUT:
 			cout << "HAUT" << endl;
@@ -72,7 +72,7 @@ void Generator::parse_file(){
 		string pos2 = line.substr(cur+1, line.length());
 		int a=atoi(pos1.c_str()),
 			b=atoi(pos2.c_str());
-		cout << name << "-> a: " <<a << ", b=" << b << endl;
+		cerr << name << "-> a: " <<a << ", b=" << b << endl;
 		nodes.push_back(
 			::pair<uchar>(a,b)
 		);
