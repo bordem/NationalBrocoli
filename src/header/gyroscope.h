@@ -6,13 +6,12 @@
 
 class Gyroscope{
 	private:
-		uchar ports[];
-		MeGyro sensor[];
+		MeGyro sensors[2];
 		const int gyro_nb;
 		const int iterations;
 
 	public:
-		Gyroscope(uchar port[2], int max_iter);
+		Gyroscope(uint8_t ports[2], int max_iter);
 		void reset();
 		double angle();
 };

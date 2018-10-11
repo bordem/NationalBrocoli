@@ -1,7 +1,7 @@
 #pragma once 
 #include <vector>
 #include <fstream>
-#include "../header/types.h"
+#include "../src/header/types.h"
 
 template<typename T>
 struct pair{

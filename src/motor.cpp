@@ -1,11 +1,8 @@
 #include "header/motor.h"
 
-
-//Motor::Motor(const Motor& M): motor(M.motor),correction(M.correction),port(M.port)
-//{}
-
 Motor::Motor(uint8_t p,Pos po):port(p),motor(p),position(po){
 }
+
 void Motor::stop(){
 	motor.setMotorPwm(0);
 }
