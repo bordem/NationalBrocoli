@@ -23,3 +23,6 @@ void Motor::backward(char speed){
 	else
 		motor.setMotorPwm(speed);
 }
+long Motor::getPulse(){
+	return motor.getPulsePos();
+}

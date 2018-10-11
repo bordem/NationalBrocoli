@@ -6,10 +6,10 @@
 
 class Mouvements{
 	private:
-		Motor& motorLeft;
-		Motor& motorRight;
+		Motor* motorLeft;
+		Motor* motorRight;
 	public:
-		Mouvements(Motor L, Motor R);
+		Mouvements(Motor* L, Motor* R);
 		void backward(float distance);
 		void forward(float distance);
 		void do_Path();

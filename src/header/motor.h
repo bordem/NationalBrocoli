@@ -17,6 +17,7 @@ class Motor{
 		void stop();
 		void forward(char speed);
 		void backward(char speed);
+		long getPulse();
 
 };
 #endif /* end of include guard:  */
