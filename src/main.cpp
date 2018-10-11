@@ -1,15 +1,18 @@
 #include <MeMegaPi.h>
 #include <Arduino.h>
-#include <motor.h>
+#include <Wire.h>
+#include <mouvements.h>
 
 int main(void ){
-
-	Serial.begin(9600);
 	init();
+	Serial.begin(9600);
 
-	//Motor mot1(SLOT_1,droite);
-	//Motor mot2(SLOT_2,gauche);
+	Motor mot2(SLOT_2,droite);
+	Motor mot1(SLOT_1,gauche);
 
+	Mouvements move(&mot1, &mot2);
+	move.forward(1);
+	
 
 	return 0;
 }
