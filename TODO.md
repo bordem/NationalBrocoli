@@ -3,7 +3,6 @@
 * Encodeurs
 * Classes
 	* Capteurs
-	* Moteurs
 	* Robot
 * Algorithme de déplacememnt
 	* mouvements fluide 
@@ -12,6 +11,5 @@
 
 # Diagrammes
 
-* de classe
 * de séquences ?
 * de cas d'utilisation
