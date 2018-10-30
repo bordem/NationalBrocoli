@@ -21,10 +21,10 @@ class Generator{
 		HAUT,
 		BAS
 	};
-	Direction direction(::pair<uchar> A, ::pair<uchar> B);
+	Direction direction(::pair<char> A, ::pair<char> B);
 
  private:
 	std::fstream file;
 	void parse_file();	
-	std::vector<::pair<uchar>> nodes;
+	std::vector<::pair<char>> nodes;
 };

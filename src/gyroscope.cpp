@@ -20,12 +20,9 @@ double* Gyroscope::angle(){
 	for (int i=0; i<gyro_nb; i++){
 		sensors[i].update();
 		xs+=sensors[i].getAngleX();
-		ys+=sensors[i].getAngleY();
-		zs+=sensors[i].getAngleZ();
+	//	ys+=sensors[i].getAngleY();
+	//	zs+=sensors[i].getAngleZ();
 	}
-	double* vals = new double[3]{xs/this->gyro_nb, ys/this->gyro_nb, zs/this->gyro_nb};
-	//double vals[3] = {xs, ys, zs};
-//	Serial.print("x=");
-//	Serial.println(vals[0]);
+	double* vals = new double[3]{xs/this->gyro_nb};//, ys/this->gyro_nb, zs/this->gyro_nb};
 	return vals;
 }

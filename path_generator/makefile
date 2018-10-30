@@ -11,7 +11,10 @@ EXEC=generator
 SRC=$(wildcard *.cpp)
 OBJ=$(SRC:%.cpp=obj/%.o)
 
-all: $(EXEC)
+all: init $(EXEC)
+
+init:
+	mkdir -p obj
 
 $(EXEC): $(OBJ)
 	@$(CXX) -o $@ $^ $(LDFLAGS)
