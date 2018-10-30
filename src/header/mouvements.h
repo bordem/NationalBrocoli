@@ -8,12 +8,15 @@ class Mouvements{
 	private:
 		Motor* motorLeft;
 		Motor* motorRight;
+		const float DISTANCE_CM_PAR_SECONDE = 29;
 	public:
 		Mouvements(Motor* L, Motor* R);
 		void backward(float distance);
 		void forward(float distance);
-		void do_Path();
-		void turn90(char speed,bool orientation);
+		void stop();
+		void goAt(char speedMotorGauche, char speedMotorDroit);
+		void turn90();
+		float getConst();
 };
 
 #endif /* end of include guard:  */

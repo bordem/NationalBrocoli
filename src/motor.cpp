@@ -11,7 +11,7 @@ void Motor::forward(char speed){
 	if(position == gauche)
 		motor.setMotorPwm(speed);
 	else
-		motor.setMotorPwm(-speed);
+		motor.setMotorPwm(-(speed+5));
 }
 
 void Motor::backward(char speed){

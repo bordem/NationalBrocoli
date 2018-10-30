@@ -3,12 +3,9 @@
 
 Mouvements::Mouvements(Motor* L, Motor* R):motorLeft(L),motorRight(R)
 {}
+
 void Mouvements::forward(float distance){
-	/*
-		Rappel :
-			v=d/t
-			d=v*t
-			t=d/v
+	/*	Rappel :	v=d/t	d=v*t	t=d/v
 
 			Diametre roue 6.3cm
 			Rayon roue 3.15 cm
@@ -18,42 +15,10 @@ void Mouvements::forward(float distance){
 			DC 9.0 V
 	*/
 
-	float temps = 1;// Seconde
-	float vitesseMoteur = 230;//Vitesse a passer aux moteurs
-	//ESSAI 1 Utilisation du nombre de rotation
-	/*
-		int RPM = 135;
-		int RPS = RPM/60;
-		int ratio = 46;
-		float r = 0.0315;
-	*/
-	//ESSAI 2 Utilisation de l'horloge
-	/*
-	ω = 2πf/Nm
-	m = 2πf/ωm
-	Where
-		ω = angular speed (rad/s)
-		f = clock frequency (Hz)
-		m = number of clock cycles
-		N = pulses per rotation
+	//float temps = 1 ;
+	float temps = (distance*100)/this->getConst();// Seconde
+	float vitesseMoteur = 200;//Vitesse a passer aux moteur
 
-	long N = motorLeft->getPulse();
-	int f = 16000000;
-	float omega = (RPM*2*PI)/60;
-	float m = (2*PI*f)/(omega*N);
-	temps = f/m;
-*/
-
-//ESSAI 3 Utilisation de l'acceleration
-// V=V0+accel*temps
-
-
-	//float vitesse=RPS*ratio*r*PI;//Vitesse en m/s Dans l'idee c'est mieux mais a la zob bien aussi
-
-	while(true){
-		Serial.print("Temps : ");
-		Serial.println(temps);
-	}
 	motorLeft->forward(vitesseMoteur);
 	motorRight->forward(vitesseMoteur);
 	delay(temps*1000);
@@ -62,25 +27,32 @@ void Mouvements::forward(float distance){
 }
 void Mouvements::backward(float distance){
 	/*
-		Rappel :
-			v=d/t
-			d=v*t
-			t=d/v
+		Rappel :	v=d/t	d=v*t	t=d/v
 	*/
-	float temps = 1;// Seconde
+	float temps = (distance*100)/this->getConst();// Seconde
 	float vitesseMoteur = 200;//Vitesse a passer aux moteurs
-	float vitesse=vitesseMoteur;//Vitesse en m/s Dans l'idee c'est mieux mais a la zob c'est bien aussi
 
-	motorLeft->backward(vitesse);
-	motorRight->backward(vitesse);
+	motorLeft->backward(vitesseMoteur);
+	motorRight->backward(vitesseMoteur);
 	delay(temps*1000);
 	motorLeft->stop();
 	motorRight->stop();
 }
-
-void Mouvements::do_Path(){
-
+void Mouvements::stop(){
+	motorLeft->stop();
+	motorRight->stop();
 }
-void Mouvements::turn90(char speed,bool orientation){
 
+void Mouvements::turn90(){
+	float vitesseMoteur = 200;//Vitesse a passer aux moteurs
+	motorLeft->forward(vitesseMoteur);
+	motorRight->backward(vitesseMoteur);
+}
+
+float Mouvements::getConst(){
+	return DISTANCE_CM_PAR_SECONDE;
+}
+void Mouvements::goAt(char speedMotorLeft, char speedMotorRight){
+	motorLeft->forward(speedMotorLeft);
+	motorRight->forward(speedMotorRight);
 }
