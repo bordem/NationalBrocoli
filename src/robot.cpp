@@ -12,14 +12,6 @@ void Robot::do_path(){
 }
 
 void Robot::turn90(){
-		float angle = (float)(90)*0.966;
-		gyro_group.reset();
-		float valeur=0;
-		move.turn90();
-		while( (valeur=abs(gyro_group.getAngle())) < angle ){
-
-		}
-		move.stop();
 }
 
 void Robot::followObject(){

@@ -6,6 +6,7 @@
 #include <gyroscope.h>
 #include <robot.h>
 #include <camera.h>
+#include <pince.h>
 
 
 
@@ -19,9 +20,14 @@ int main(void ){
 	Ultrason ultra(PORT6,5);
 	Mouvements move(&mot1, &mot2);
 	Gyroscope gyro({PORT7,PORT6});
+	Pince pince(SLOT_4);
+
+	pince.close();
+	pince.open();
+
 
 	Robot robot(gyro,move,ultra);
-
+	//robot.followObject();
 	//while(true){
 	//	gyro.getAngle();
 	//}
