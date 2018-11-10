@@ -4,13 +4,13 @@
 #include "types.h"
 #include "motor.h"
 
-class Mouvements{
+class Movements{
 	private:
 		Motor* motorLeft;
 		Motor* motorRight;
 		const float DISTANCE_CM_PAR_SECONDE = 29;
 	public:
-		Mouvements(Motor* L, Motor* R);
+		Movements(Motor* L, Motor* R);
 		void backward(float distance);
 		void forward(float distance);
 		void stop();

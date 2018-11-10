@@ -1,10 +1,10 @@
 #include "header/mouvements.h"
 
 
-Mouvements::Mouvements(Motor* L, Motor* R):motorLeft(L),motorRight(R)
+Movements::Movements(Motor* L, Motor* R):motorLeft(L),motorRight(R)
 {}
 
-void Mouvements::forward(float distance){
+void Muvements::forward(float distance){
 	/*	Rappel :	v=d/t	d=v*t	t=d/v
 
 			Diametre roue 6.3cm
@@ -25,7 +25,7 @@ void Mouvements::forward(float distance){
 	motorLeft->stop();
 	motorRight->stop();
 }
-void Mouvements::backward(float distance){
+void Movements::backward(float distance){
 	/*
 		Rappel :	v=d/t	d=v*t	t=d/v
 	*/
@@ -38,21 +38,21 @@ void Mouvements::backward(float distance){
 	motorLeft->stop();
 	motorRight->stop();
 }
-void Mouvements::stop(){
+void Movements::stop(){
 	motorLeft->stop();
 	motorRight->stop();
 }
 
-void Mouvements::turn90(){
+void Movements::turn90(){
 	float vitesseMoteur = 200;//Vitesse a passer aux moteurs
 	motorLeft->forward(vitesseMoteur);
 	motorRight->backward(vitesseMoteur);
 }
 
-float Mouvements::getConst(){
+float Movements::getConst(){
 	return DISTANCE_CM_PAR_SECONDE;
 }
-void Mouvements::goAt(char speedMotorLeft, char speedMotorRight){
+void Movements::goAt(char speedMotorLeft, char speedMotorRight){
 	motorLeft->forward(speedMotorLeft);
 	motorRight->forward(speedMotorRight);
 }

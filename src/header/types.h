@@ -8,8 +8,8 @@ typedef unsigned long ulong;
 #include <stdint.h>
 
 enum Pos{
-	droite,
-	gauche
+	RIGHT,
+	LEFT
 };
 
 #endif

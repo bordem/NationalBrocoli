@@ -14,7 +14,7 @@ void Gyroscope::reset(){
 	}
 }
 
-double* Gyroscope::angle(){
+double* Gyroscope::getAngle(){
 
 	double xs=0, ys=0, zs=0;
 	for (int i=0; i<gyro_nb; i++){
