@@ -42,7 +42,7 @@ void Robot::followObject(){
 					//Serial.print(buf);
 					//Serial.print(pixy.blocks[j].x);
 					//Serial.print(pixy.blocks[j].y);
-					if(cam.getPixy().blocks[j].signature == 2){
+					if(cam.getPixy().blocks[j].signature == 3){
 						tab[j] = cam.getPixy().blocks[j].width*cam.getPixy().blocks[j].height;
 					}
 				}

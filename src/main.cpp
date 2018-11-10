@@ -21,12 +21,8 @@ int main(void ){
 	Mouvements move(&mot1, &mot2);
 	Gyroscope gyro({PORT7,PORT6});
 	Pince pince(SLOT_4);
-
-	pince.close();
-	pince.open();
-
-
 	Robot robot(gyro,move,ultra);
+	robot.followObject();
 	//robot.followObject();
 	//while(true){
 	//	gyro.getAngle();
