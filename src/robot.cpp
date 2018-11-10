@@ -1,6 +1,6 @@
 #include "header/robot.h"
 
-Robot::Robot(Gyroscope gyro, Mouvements move, Ultrason sound):
+Robot::Robot(Gyroscope gyro, Movements move, Ultrason sound):
 	gyro_group(gyro),
 	move(move),
 	sound(sound)
@@ -8,11 +8,6 @@ Robot::Robot(Gyroscope gyro, Mouvements move, Ultrason sound):
 	Camera cam();
 }
 Robot::~Robot(){}
-void Robot::do_path(){
-}
-
-void Robot::turn90(){
-}
 
 void Robot::followObject(){
 	while (true)
