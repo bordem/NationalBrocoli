@@ -19,7 +19,7 @@ class Gyroscope{
 		};
 		Gyroscope(uint8_t ports[2], int max_iter);
 		void reset();
-		double* angle();
+		double* getAngle();
 };
 
 #endif

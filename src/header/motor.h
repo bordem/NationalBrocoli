@@ -12,7 +12,7 @@ class Motor{
 		Pos position;
 
 	public:
-		Motor(uint8_t port,Pos p);
+		Motor(uint8_t port, Pos p);
 		//Motor(const Motor& M);
 		void stop();
 		void forward(char speed);

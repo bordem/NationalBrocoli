@@ -5,7 +5,7 @@
 #$*	Le nom du fichier sans suffixe
 
 CXX=g++
-CXXFLAGS= -std=c++14 -ggdb
+CXXFLAGS= -std=c++14 -ggdb -fno-stack-protector
 LDFLAGS=
 EXEC=generator
 SRC=$(wildcard *.cpp)

@@ -15,6 +15,6 @@ class Camera{
 	public:
 		Camera();
 		int getTAILLE_X();
-		Pixy getPixy();
+		Pixy& getPixy();
 };
 #endif

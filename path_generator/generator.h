@@ -9,22 +9,23 @@ struct pair{
 	T x;
 	T y;
 };
+enum Direction{
+	DROITE,
+	GAUCHE,
+	HAUT,
+	BAS
+};
 
 class Generator{
  public:
 	Generator(std::string path);
 	~Generator();
 	void generate();
-	enum Direction{
-		DROITE,
-		GAUCHE,
-		HAUT,
-		BAS
-	};
 	Direction direction(::pair<char> A, ::pair<char> B);
 
  private:
 	std::fstream file;
 	void parse_file();	
 	std::vector<::pair<char>> nodes;
+	const char BLOCK_SIZE=40;
 };

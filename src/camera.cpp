@@ -11,7 +11,7 @@ int Camera::getTAILLE_X()
 {
 	return TAILLE_X;
 }
-Pixy Camera::getPixy()
+Pixy& Camera::getPixy()
 {
 	return pixy;
 }
