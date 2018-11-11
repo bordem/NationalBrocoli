@@ -13,7 +13,7 @@
 
 int main(void ){
 	init();
-	Serial.begin(9600);
+	Serial.begin(115200);
 
 //	Motor mot1(SLOT_1, LEFT);
 //	Motor mot2(SLOT_2, RIGHT);
@@ -29,7 +29,8 @@ int main(void ){
 //	Robot robot(gyro,move,ultra);
 	//robot.followObject();
 	while(true){
-		Serial.println(gyro.getAngle()[0]);
+		delay(1000);
+		Serial.println(gyro.angle());
 	}
 	/*while(true){
 		Serial.print("Voila : ");

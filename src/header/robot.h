@@ -18,6 +18,7 @@ class Robot{
 	public:
 		Robot(Gyroscope gyro, Movements move, Ultrason sound);
 		~Robot();
+		void doPath();
 		void followObject();
 };
 

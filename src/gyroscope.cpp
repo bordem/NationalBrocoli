@@ -14,15 +14,42 @@ void Gyroscope::reset(){
 	}
 }
 
-double* Gyroscope::getAngle(){
-
-	double xs=0, ys=0, zs=0;
-	for (int i=0; i<gyro_nb; i++){
-		sensors[i].update();
-		xs+=sensors[i].getAngleX();
-	//	ys+=sensors[i].getAngleY();
-	//	zs+=sensors[i].getAngleZ();
+double Gyroscope::angle(){
+	double x[this->iterations];
+	for ( int j=0; j<this->iterations; j++){
+		for ( int i=0; i<this->gyro_nb; i++){
+			sensors[i].update();
+			x[j]+=(sensors[i].getAngleX()/this->gyro_nb);
+		}
+//		Serial.println("Val dans la fonction");
+//		Serial.println(xs);
 	}
-	double* vals = new double[3]{xs/this->gyro_nb};//, ys/this->gyro_nb, zs/this->gyro_nb};
-	return vals;
+
+	int val, min, max;
+	if ( x[0] > x[1] ){ // first choose min and max between 0 and 1
+		max=1;
+		min=0;
+	}
+	else {
+		max=0;
+		min=1;
+	}
+	if ( x[2] < min  ){ // then compare 2 to the min
+		val=min;
+		min=2;
+	}
+	else if ( x[2] > max  ) { // and the max
+		val=max;
+		max=2;
+	}
+	else {
+		val=2;
+	}
+	Serial.print("Min: ");
+	Serial.print(min);
+	Serial.print("\tVal: ");
+	Serial.print(val);
+	Serial.print("\tMax: ");
+	Serial.println(max);
+	return x[val];
 }
