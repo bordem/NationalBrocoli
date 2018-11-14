@@ -1,15 +1,15 @@
 # Listes des Choses à faire 
 
 * Encodeurs
-* Classes
-	* Capteurs
-	* Robot
+* [x] Classes
+	* [x] Capteurs
+	* [x] Robot
 * Algorithme de déplacememnt
-	* mouvements fluide 
+	* [x] mouvements fluide 
 	* mouvements précis
-* Caméras
+* [x] Caméras
 
 # Diagrammes
-
+* [x] classes
 * de séquences ?
 * de cas d'utilisation
