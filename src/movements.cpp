@@ -1,7 +1,10 @@
-#include "header/movements.h"
+#include "movements.h"
+#include "gyroscope.h"
 
 
-Movements::Movements(Motor* L, Motor* R):motorLeft(L),motorRight(R)
+Movements::Movements(Motor* L, Motor* R):
+	motorLeft(L),
+	motorRight(R)
 {}
 
 void Movements::forward(float distance){
@@ -43,21 +46,21 @@ void Movements::stop(){
 	motorRight->stop();
 }
 
-void Movements::turn90(enum Pos direction, uchar speed){
-	if ( direction == Pos::RIGHT ){
-		motorLeft->forward(speed);
-		motorRight->backward(speed);
+void Movements::turn(enum Pos direction){
+	if ( direction == LEFT ){
+		motorLeft->forward(150);
+		motorRight->backward(150);
 	}
 	else {
-		motorLeft->backward(speed);
-		motorRight->forward(speed);
+		motorLeft->backward(150);
+		motorRight->forward(150);
 	}
 }
 
 float Movements::getSpeed(){
 	return DISTANCE_CM_PAR_SECONDE;
 }
-void Movements::goAt(uchar speedMotorLeft, uchar speedMotorRight){
+void Movements::goAt(int speedMotorLeft, int speedMotorRight){
 	motorLeft->forward(speedMotorLeft);
 	motorRight->forward(speedMotorRight);
 }

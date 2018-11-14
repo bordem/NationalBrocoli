@@ -1,7 +1,7 @@
 #include "header/robot.h"
 
 Robot::Robot(Gyroscope gyro, Movements move, Ultrason sound):
-	gyro_group(gyro),
+	gyro(gyro),
 	move(move),
 	sound(sound)
 {
@@ -9,11 +9,28 @@ Robot::Robot(Gyroscope gyro, Movements move, Ultrason sound):
 }
 Robot::~Robot(){}
 
+void Robot::turn90(enum Pos direction){
+	move.stop();
+	gyro.begin();
+	delay(100);
+	move.turn(direction);
+	if ( direction == LEFT ){
+		while ( gyro.getAngle() < 90 ) {
+			delay(1);	
+		}
+	}
+	else {
+		while (gyro.getAngle() > -90 ){
+			delay(1);
+		}
+	}
+	move.stop();
+}
+
 void Robot::followObject(){
 	while (true)
 	{
 		static int i = 0;
-		int j;
 		uint16_t blocks;
 		char buf[32];
 
@@ -31,7 +48,7 @@ void Robot::followObject(){
 			{
 				sprintf(buf, "Detected %d:\n", blocks);
 				Serial.print(buf);
-				for (j=0; j<blocks; j++)
+				for (uint8_t j=0; j<blocks; j++)
 				{
 					sprintf(buf, "	block %d: ", j);
 					//Serial.print(buf);

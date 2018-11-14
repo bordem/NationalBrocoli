@@ -15,8 +15,8 @@ class Motor{
 		Motor(uint8_t port, Pos p);
 		//Motor(const Motor& M);
 		void stop();
-		void forward(char speed);
-		void backward(char speed);
+		void forward(uchar speed=200);
+		void backward(uchar speed=200);
 		long getPulse();
 
 };

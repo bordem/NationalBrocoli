@@ -7,16 +7,16 @@ void Motor::stop(){
 	motor.setMotorPwm(0);
 }
 
-void Motor::forward(char speed){
+void Motor::forward(uchar speed){
 	if(position == LEFT)
-		motor.setMotorPwm(speed);
+		motor.setMotorPwm(speed+5);
 	else
-		motor.setMotorPwm(-(speed+5));
+		motor.setMotorPwm(-speed);
 }
 
-void Motor::backward(char speed){
+void Motor::backward(uchar speed){
 	if(position == LEFT)
-		motor.setMotorPwm(-speed);
+		motor.setMotorPwm(-speed-5);
 	else
 		motor.setMotorPwm(speed);
 }

@@ -4,22 +4,22 @@
 #include "types.h"
 #include <MeGyro.h>
 
+enum Axe{
+	X=0,
+	Y,
+	Z
+};
 
 class Gyroscope{
 	private:
-		MeGyro sensors[2];
-		const int gyro_nb;
+		MeGyro sensor;
 		const int iterations;
 
 	public:
-		enum Axe{
-			X=0,
-			Y,
-			Z
-		};
-		Gyroscope(uint8_t ports[2], int max_iter);
-		void reset();
-		double angle();
+		Gyroscope(uint8_t port, int max_iter=3);
+		void begin();
+		double getAngle();
+		void update();
 };
 
 #endif

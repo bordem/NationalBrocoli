@@ -10,7 +10,7 @@
 
 class Robot{
 	private:
-		Gyroscope& gyro_group;
+		Gyroscope& gyro;
 		Movements& move;
 		Camera cam;
 		Ultrason& sound;
@@ -18,6 +18,7 @@ class Robot{
 	public:
 		Robot(Gyroscope gyro, Movements move, Ultrason sound);
 		~Robot();
+		void turn90(enum Pos direction);
 		void doPath();
 		void followObject();
 };

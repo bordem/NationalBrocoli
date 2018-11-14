@@ -9,7 +9,6 @@ Generator::Generator(string path){
 	using namespace std;
 	this->file.open(path,ios::in);
 	this->parse_file();
-	cout << "#pragma once" << endl; 
 	cout << "#include \"robot.h\"" << endl;
 	cout << "void Robot::doPath(){" << endl;
 	this->generate();
@@ -31,16 +30,16 @@ void orient(Direction start, Direction next){
 					break;
 				}
 				case BAS: {
-					cout << "\tmove.turn90(RIGHT);" << endl;
-					cout << "\tmove.turn90(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
 					break;
 				}
 				case DROITE:{
-					cout << "\tmove.turn90(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
 					break;
 				}
 				case GAUCHE:{
-					cout << "\tmove.turn90(LEFT);" << endl;
+					cout << "\tmove.turn(LEFT);" << endl;
 					break;
 				}
 			}
@@ -49,19 +48,19 @@ void orient(Direction start, Direction next){
 		case BAS:{
 			switch ( next ){
 				case HAUT:{
-					cout << "\tmove.turn90(RIGHT);" << endl;
-					cout << "\tmove.turn90(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
 					break;
 				}
 				case BAS: {
 					break;
 				}
 				case DROITE:{
-					cout << "\tmove.turn90(LEFT);" << endl;
+					cout << "\tmove.turn(LEFT);" << endl;
 					break;
 				}
 				case GAUCHE:{
-					cout << "\tmove.turn90(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
 					break;
 				}
 			}
@@ -70,19 +69,19 @@ void orient(Direction start, Direction next){
 		case DROITE:{
 			switch ( next ){
 				case HAUT:{
-					cout << "\tmove.turn90(LEFT);" << endl;
+					cout << "\tmove.turn(LEFT);" << endl;
 					break;
 				}
 				case BAS: {
-					cout << "\tmove.turn90(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
 					break;
 				}
 				case DROITE:{
 					break;
 				}
 				case GAUCHE:{
-					cout << "\tmove.turn90(RIGHT);" << endl;
-					cout << "\tmove.turn90(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
 					break;
 				}
 			}
@@ -91,16 +90,16 @@ void orient(Direction start, Direction next){
 		case GAUCHE:{
 			switch ( next ){
 				case HAUT:{
-					cout << "\tmove.turn90(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
 					break;
 				}
 				case BAS: {
-					cout << "\tmove.turn90(LEFT);" << endl;
+					cout << "\tmove.turn(LEFT);" << endl;
 					break;
 				}
 				case DROITE:{
-					cout << "\tmove.turn90(RIGHT);" << endl;
-					cout << "\tmove.turn90(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tmove.turn(RIGHT);" << endl;
 					break;
 				}
 				case GAUCHE:{

@@ -8,39 +8,36 @@
 #include <camera.h>
 #include <pince.h>
 
-
-
-
 int main(void ){
 	init();
 	Serial.begin(115200);
 
-//	Motor mot1(SLOT_1, LEFT);
-//	Motor mot2(SLOT_2, RIGHT);
-//	Ultrason ultra(PORT6,5);
-//	Mouvements move(&mot1, &mot2);
-	Gyroscope gyro({PORT7,PORT6});
+	Motor mot1(SLOT_1, LEFT);
+	Motor mot2(SLOT_2, RIGHT);
+	Ultrason ultra(PORT6,5);
+	Movements move(&mot1, &mot2);
+	Gyroscope gyro(PORT_6, 3);
+//	gyro.begin();
 //	Pince pince(SLOT_4);
+
+	Robot robot(gyro, move, ultra);
 
 //	pince.close();
 //	pince.open();
 
 
-//	Robot robot(gyro,move,ultra);
-	//robot.followObject();
-	while(true){
-		delay(1000);
-		Serial.println(gyro.angle());
+	//robot.doPath();	
+	robot.turn90(RIGHT);
+	robot.turn90(RIGHT);
+	robot.turn90(LEFT);
+	robot.turn90(LEFT);
+	//robot.doPath();	
+
+	while ( true ) {
+		delay(300);
 	}
-	/*while(true){
-		Serial.print("Voila : ");
-		Serial.print(ultra.obstacleAt(100));
-		Serial.print(" ");
-		Serial.println(ultra.readDistance(500));
-	}*/
 
 	//move.forward(1);
-	//robot.turn90();
 
 	return 0;
 }
