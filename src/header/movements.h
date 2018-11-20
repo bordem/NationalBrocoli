@@ -10,7 +10,7 @@ class Movements{
 	private:
 		Motor* motorLeft;
 		Motor* motorRight;
-		const float DISTANCE_CM_PAR_SECONDE = 47; //TODO On devrait renomer cette variable je trouve
+		const float DISTANCE_CM_PAR_SECONDE = 44; //TODO On devrait renomer cette variable je trouve
 	public:
 		Movements(Motor* L, Motor* R);
 		void backward(float distance);

@@ -20,26 +20,52 @@ void Movements::forward(float distance, Ultrason& ultraLeft, Ultrason& ultraRigh
 
 	//float time = 1 ;
 	float time = (distance*100)/this->getSpeed();// Seconde
-	uchar speed = 200;//Vitesse a passer aux moteur
+	uchar speed=200;//Vitesse a passer aux moteur
 
 	Serial.println("Forward");
 	
-	float distance_wall = 10;
+	float distance_near = 10;
+	float distance_far = 13;
+	float distance_max = 19;
 		
 	unsigned long startTime = millis();
 	while ( (millis() - startTime) < time*1000  ){
-		if ( ultraLeft.readDistance() < distance_wall ) {
-			motorRight->forward(speed-30);
-			motorLeft->forward(speed+30);
+/*		Serial.print("Distance: ");
+		Serial.print(ultraRight.readDistance());
+		Serial.print(", ");
+		Serial.println(ultraLeft.readDistance() );*/
+		float distanceLeft = ultraLeft.readDistance(1);
+		float distanceRight = ultraRight.readDistance(1);
+		Serial.print("Distance: (");
+		Serial.print(distanceLeft);
+		Serial.print(", ");
+		Serial.print(distanceRight);
+		Serial.println(")");
+		float ajustement = 30;
+		//Controle moteur gauche
+		if ( distanceLeft < distance_near || distanceLeft > 350 ) {
+			motorLeft->forward(speed+ajustement+10);
 		}
-		else if ( ultraRight.readDistance() < distance_wall){
-			motorLeft->forward(speed-30);
-			motorRight->forward(speed+30);
+		else if ( distanceLeft < distance_max && distanceLeft > distance_far ){
+			motorLeft->forward(speed-ajustement-10);
 		}
 		else {
 			motorLeft->forward(speed);
+		}
+
+		// Controle moteur droit
+		if ( distanceRight < distance_near || distanceRight > 350 ) {
+			motorRight->forward(speed+ajustement);
+		}
+		else if ( distanceRight < distance_max && distanceRight > distance_far ){
+			motorRight->forward(speed-ajustement);
+		}
+		else {
 			motorRight->forward(speed);
 		}
+		//	motorLeft->forward(speed);
+		//delay(100);
+
 	}
 	this->stop();
 }
