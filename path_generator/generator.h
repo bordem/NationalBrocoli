@@ -27,5 +27,5 @@ class Generator{
 	std::fstream file;
 	void parse_file();	
 	std::vector<::pair<char>> nodes;
-	const double BLOCK_SIZE=40;
+	const double BLOCK_SIZE=0.4;
 };

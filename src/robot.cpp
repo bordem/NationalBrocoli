@@ -1,9 +1,10 @@
 #include "header/robot.h"
 
-Robot::Robot(Gyroscope gyro, Movements move, Ultrason sound):
+Robot::Robot(Gyroscope& gyro, Movements& move, Ultrason& ultraLeft, Ultrason& ultraRight):
 	gyro(gyro),
 	move(move),
-	sound(sound)
+	ultraLeft(ultraLeft),
+	ultraRight(ultraRight)
 {
 	Camera cam();
 }
@@ -12,17 +13,20 @@ Robot::~Robot(){}
 void Robot::turn90(enum Pos direction){
 	move.stop();
 	gyro.begin();
-	delay(100);
+	delay(10);
 	move.turn(direction);
+	float ag;
 	if ( direction == LEFT ){
-		while ( gyro.getAngle() < 90 ) {
-			delay(1);	
-		}
+		while ( (ag=gyro.getAngle()) < 89 )
+		{
+			Serial.println(ag);
+		}/**/
 	}
 	else {
-		while (gyro.getAngle() > -90 ){
-			delay(1);
-		}
+		while ( (ag=gyro.getAngle()) > -89 )
+		{
+			Serial.println(ag);
+		}/**/
 	}
 	move.stop();
 }

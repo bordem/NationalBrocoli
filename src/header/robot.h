@@ -13,10 +13,11 @@ class Robot{
 		Gyroscope& gyro;
 		Movements& move;
 		Camera cam;
-		Ultrason& sound;
+		Ultrason& ultraLeft;
+		Ultrason& ultraRight;
 
 	public:
-		Robot(Gyroscope gyro, Movements move, Ultrason sound);
+		Robot(Gyroscope& gyro, Movements& move, Ultrason& soudLeft, Ultrason& soudRight);
 		~Robot();
 		void turn90(enum Pos direction);
 		void doPath();

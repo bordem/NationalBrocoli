@@ -1,0 +1,11 @@
+185rpm =  3.083rps
+rapport_moteur_roue: 1:46
+rpm_roue=3.083*46=141.818
+Diamètre roue+chenille = 6cm
+distance_1_rotation = périmètre_roue = PI*R*2 = 3.141592*3*2 = 18.849556
+
+vitesse_robot = 141.818 * 18.849556 = 2073.2063
+
+
+
+

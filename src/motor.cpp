@@ -8,15 +8,15 @@ void Motor::stop(){
 }
 
 void Motor::forward(uchar speed){
-	if(position == LEFT)
-		motor.setMotorPwm(speed+5);
+	if(position == RIGHT)
+		motor.setMotorPwm(speed);
 	else
 		motor.setMotorPwm(-speed);
 }
 
 void Motor::backward(uchar speed){
-	if(position == LEFT)
-		motor.setMotorPwm(-speed-5);
+	if(position == RIGHT)
+		motor.setMotorPwm(-speed);
 	else
 		motor.setMotorPwm(speed);
 }

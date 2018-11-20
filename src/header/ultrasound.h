@@ -8,7 +8,6 @@ class Ultrason{
 	private:
 		MeUltrasonicSensor sensor;
 		const int iterations;
-		int port;
 
 	public:
 		Ultrason(int port, int max_iter);

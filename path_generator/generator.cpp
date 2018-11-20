@@ -30,16 +30,16 @@ void orient(Direction start, Direction next){
 					break;
 				}
 				case BAS: {
-					cout << "\tmove.turn(RIGHT);" << endl;
-					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 					break;
 				}
 				case DROITE:{
-					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 					break;
 				}
 				case GAUCHE:{
-					cout << "\tmove.turn(LEFT);" << endl;
+					cout << "\tthis->turn90(LEFT);" << endl;
 					break;
 				}
 			}
@@ -48,19 +48,19 @@ void orient(Direction start, Direction next){
 		case BAS:{
 			switch ( next ){
 				case HAUT:{
-					cout << "\tmove.turn(RIGHT);" << endl;
-					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 					break;
 				}
 				case BAS: {
 					break;
 				}
 				case DROITE:{
-					cout << "\tmove.turn(LEFT);" << endl;
+					cout << "\tthis->turn90(LEFT);" << endl;
 					break;
 				}
 				case GAUCHE:{
-					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 					break;
 				}
 			}
@@ -69,19 +69,19 @@ void orient(Direction start, Direction next){
 		case DROITE:{
 			switch ( next ){
 				case HAUT:{
-					cout << "\tmove.turn(LEFT);" << endl;
+					cout << "\tthis->turn90(LEFT);" << endl;
 					break;
 				}
 				case BAS: {
-					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 					break;
 				}
 				case DROITE:{
 					break;
 				}
 				case GAUCHE:{
-					cout << "\tmove.turn(RIGHT);" << endl;
-					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 					break;
 				}
 			}
@@ -90,16 +90,16 @@ void orient(Direction start, Direction next){
 		case GAUCHE:{
 			switch ( next ){
 				case HAUT:{
-					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 					break;
 				}
 				case BAS: {
-					cout << "\tmove.turn(LEFT);" << endl;
+					cout << "\tthis->turn90(LEFT);" << endl;
 					break;
 				}
 				case DROITE:{
-					cout << "\tmove.turn(RIGHT);" << endl;
-					cout << "\tmove.turn(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 					break;
 				}
 				case GAUCHE:{
@@ -120,14 +120,16 @@ void Generator::generate(){
 	using namespace std;
 	auto prev=nodes.begin();
 	Direction robot = HAUT;
-	cout << "\tmove.forward(" << (int)BLOCK_SIZE << ");" << endl;
+	cout << "\tmove.forward(" << (double)BLOCK_SIZE << ", ultraLeft, ultraRight);" << endl;
 	for ( auto it=++(nodes.begin()); it != nodes.end(); it++){
 		cerr << "//(" << (int)prev->x << ", " << (int)prev->y << ") -> (" << (int)it->x << ", " << (int)it->y << ")" << endl;
 		Direction suiv = this->direction(*prev, *it);
 		int distance = max(abs(it->x-prev->x), abs(it->y - prev->y));
 		orient(robot, suiv);
 		robot=suiv;
-		cout << "\tmove.forward(" <<  distance * BLOCK_SIZE<< ");" << endl;
+		cout << "\tgyro.begin();" << endl;
+		cout << "\tmove.forward(" << distance * BLOCK_SIZE<< ", ultraLeft, ultraRight);" << endl;
+		cout << "\tmove.tweak(gyro);" << endl;
 		prev=it;
 	}
 }

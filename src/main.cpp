@@ -14,27 +14,20 @@ int main(void ){
 
 	Motor mot1(SLOT_1, LEFT);
 	Motor mot2(SLOT_2, RIGHT);
-	Ultrason ultra(PORT6,5);
+	Ultrason ultraLeft(PORT_6,5);
+	Ultrason ultraRight(PORT_8,5);
 	Movements move(&mot1, &mot2);
-	Gyroscope gyro(PORT_6, 3);
+	Gyroscope gyro(PORT_7, 3);
 //	gyro.begin();
 //	Pince pince(SLOT_4);
 
-	Robot robot(gyro, move, ultra);
+	Robot robot(gyro, move, ultraLeft, ultraRight);
 
-//	pince.close();
-//	pince.open();
+	robot.doPath();
 
-
-	//robot.doPath();	
-	robot.turn90(RIGHT);
-	robot.turn90(RIGHT);
-	robot.turn90(LEFT);
-	robot.turn90(LEFT);
-	//robot.doPath();	
-
-	while ( true ) {
-		delay(300);
+	while ( true ){
+		Serial.println(gyro.getAngle());
+		delay(100);
 	}
 
 	//move.forward(1);

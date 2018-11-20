@@ -10,17 +10,18 @@ iterations(max_iter)
 }
 
 void Gyroscope::update(){
-	sensor.update();
-	delay(10);
+	sensor.fast_update();
+//	delay(10);
 }
 
 void Gyroscope::begin(){
-	delay(1000);
+	delay(500);
 	sensor.begin();
-	delay(1000);
+	delay(500);
 }
 
 double Gyroscope::getAngle(){
-	sensor.update();
+	this->update();
+	Serial.println(sensor.getAngleZ());
 	return sensor.getAngleZ();
 }
