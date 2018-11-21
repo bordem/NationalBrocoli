@@ -1,8 +1,8 @@
 #include "robot.h"
 void Robot::doPath(){
-	move.forward(0.4, ultraLeft, ultraRight);
+	move.forward(1000, ultraLeft, ultraRight);
 //(0, 0) -> (-3, 0)
-	this->turn90(LEFT);
+	/*this->turn90(LEFT);
 	gyro.begin();
 	move.forward(1.2, ultraLeft, ultraRight);
 	move.tweak(gyro);
@@ -50,5 +50,5 @@ void Robot::doPath(){
 	this->turn90(RIGHT);
 	gyro.begin();
 	move.forward(0.4, ultraLeft, ultraRight);
-	move.tweak(gyro);
+	move.tweak(gyro);*/
 }

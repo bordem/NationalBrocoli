@@ -24,9 +24,9 @@ void Movements::forward(float distance, Ultrason& ultraLeft, Ultrason& ultraRigh
 
 	Serial.println("Forward");
 	
-	float distance_near = 10;
-	float distance_far = 13;
-	float distance_max = 19;
+	float distance_near = 9;
+	float distance_far = 11;
+	float distance_max = 20;
 		
 	unsigned long startTime = millis();
 	while ( (millis() - startTime) < time*1000  ){
@@ -36,18 +36,45 @@ void Movements::forward(float distance, Ultrason& ultraLeft, Ultrason& ultraRigh
 		Serial.println(ultraLeft.readDistance() );*/
 		float distanceLeft = ultraLeft.readDistance(1);
 		float distanceRight = ultraRight.readDistance(1);
+		float ajustement = 30;
+		/*motorLeft->forward(speed);
+		motorRight->forward(speed);*/
+
+#ifdef DEBUG
+#pragma message ( "Debug configuration" )
 		Serial.print("Distance: (");
 		Serial.print(distanceLeft);
 		Serial.print(", ");
 		Serial.print(distanceRight);
 		Serial.println(")");
-		float ajustement = 30;
-		//Controle moteur gauche
 		if ( distanceLeft < distance_near || distanceLeft > 350 ) {
-			motorLeft->forward(speed+ajustement+10);
+			Serial.println("motorLeft->forward(speed+ajustement);");
 		}
 		else if ( distanceLeft < distance_max && distanceLeft > distance_far ){
-			motorLeft->forward(speed-ajustement-10);
+			Serial.println("motorLeft->forward(speed-ajustement);");
+		}
+		else {
+			Serial.println("motorLeft->forward(speed);");
+		}
+
+		// Controle moteur droit
+		if ( distanceRight < distance_near || distanceRight > 350 ) {
+			Serial.println("motorRight->forward(speed+ajustement);");
+		}
+		else if ( distanceRight < distance_max && distanceRight > distance_far ){
+			Serial.println("motorRight->forward(speed-ajustement);");
+		}
+		else {
+			Serial.println("motorRight->forward(speed);");
+		}
+		delay(100);/**/
+#else 
+		/*//Controle moteur gauche*/
+		if ( distanceLeft < distance_near || distanceLeft > 350 ) {
+			motorLeft->forward(speed+ajustement);
+		}
+		else if ( distanceLeft < distance_max && distanceLeft > distance_far ){
+			motorLeft->forward(speed-ajustement);
 		}
 		else {
 			motorLeft->forward(speed);
@@ -63,8 +90,7 @@ void Movements::forward(float distance, Ultrason& ultraLeft, Ultrason& ultraRigh
 		else {
 			motorRight->forward(speed);
 		}
-		//	motorLeft->forward(speed);
-		//delay(100);
+#endif
 
 	}
 	this->stop();
