@@ -7,7 +7,7 @@ Movements::Movements(Motor* L, Motor* R):
 
 void nop(){};
 
-void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ulra){
+void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ultra){
 	/*	Rappel :	v=d/t	d=v*t	t=d/v
 
 			Diametre roue 6.3cm
@@ -29,14 +29,14 @@ void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ulra){
 		
 	unsigned long startTime = millis();
 	while ( (millis() - startTime) < time*1000  ){
-		float distance = 400;//ultra.readDistance(1);
+		float distance = 350;// ultra.readDistance(1);
 		float ajustement = 30;
 		float angle = gyro.getAngle();
 
-/**/
-		Serial.print("Distance: ");
-		Serial.print(distance);
+/*/
 		if ( distance < distance_max || distance > 399 ){ // Il y a un mur, on peut l'utiliser
+			Serial.print("Distance: ");
+			Serial.println(distance);
 			if ( distance < distance_near || distance > 399 ) { // En considérant que l'ultra est à gauche, sinon il faut inersé les variations de vitesse sur le moteur gauche et droit
 				Serial.println("motorLeft->forward(speed+ajustement);");
 				Serial.println("motorRight->forward(speed-ajustement);");
@@ -51,11 +51,13 @@ void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ulra){
 			}
 		}
 		else { // On utliiser le gyro
-			if ( angle < 0 && angle > -5 ){
+			Serial.print("Angle:");
+			Serial.println(angle);
+			if ( angle < 0 && angle < -5 ){
 				Serial.println("motorRight->forward(speed+ajustemnt);");
 				Serial.println("motorLeft->forward(speed-ajustemnt);");
 			}
-			else if ( angle > 0 && angle < 5 ){
+			else if ( angle > 0 && angle > 5 ){
 				Serial.println("motorRight->forward(speed-ajustement);");
 				Serial.println("motorLeft->forward(speed+ajustement);");
 			}
@@ -64,9 +66,10 @@ void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ulra){
 				Serial.println("motorLeft->forward(speed);");
 			}
 		}
+		delay(1000);
 /*/
-		if ( distance < distance_max || distance > 399 ){ // Il y a un mur, on peut l'utiliser
-			if ( distance < distance_near || distance > 399 ) { // En considérant que l'ultra est à gauche, sinon il faut inersé les variations de vitesse sur le moteur gauche et droit
+		if ( distance < distance_max || (int)distance == 400 ){ // Il y a un mur, on peut l'utiliser
+			if ( distance < distance_near || (int)distance == 400 ) { // En considérant que l'ultra est à gauche, sinon il faut inersé les variations de vitesse sur le moteur gauche et droit
 				motorLeft->forward(speed+ajustement);
 				motorRight->forward(speed-ajustement);
 			}
@@ -80,7 +83,7 @@ void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ulra){
 			}
 		}
 		else { // On utliiser le gyro
-			if ( angle < 0 && angle > -5 ){
+			if ( angle < 0 && angle < -5 ){
 				motorRight->forward(speed+ajustement);
 				motorLeft->forward(speed-ajustement);
 			}
@@ -132,12 +135,12 @@ void Movements::stop(){
 
 void Movements::turn(enum Pos direction){
 	if ( direction == RIGHT ){
-		motorLeft->forward(60);
-		motorRight->backward(60);
+		motorLeft->forward(100);
+		motorRight->backward(100);
 	}
 	else {
-		motorLeft->backward(60);
-		motorRight->forward(60);
+		motorLeft->backward(100);
+		motorRight->forward(100);
 	}
 }
 

@@ -2,6 +2,7 @@
 
 //sensors{MeGyro(ports[0]),MeGyro(ports[1])},
 
+
 Gyroscop::Gyroscop(uint8_t port, int max_iter):
 sensor(MeGyro(port)),
 iterations(max_iter)
@@ -23,5 +24,5 @@ void Gyroscop::begin(){
 double Gyroscop::getAngle(){
 	this->update();
 	//Serial.println(sensor.getAngleZ());
-	return sensor.getAngleZ();
+	return (int)(sensor.getAngleZ()+0.5); // round to closest int
 }

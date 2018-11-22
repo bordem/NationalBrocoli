@@ -129,7 +129,6 @@ void Generator::generate(){
 		robot=suiv;
 		cout << "\tgyro.begin();" << endl;
 		cout << "\tmove.forward(" << distance * BLOCK_SIZE<< ", gyro, ultra);" << endl;
-		cout << "\tmove.tweak(gyro);" << endl;
 		prev=it;
 	}
 }
