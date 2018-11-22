@@ -10,13 +10,13 @@ enum Axe{
 	Z
 };
 
-class Gyroscope{
+class Gyroscop{
 	private:
 		MeGyro sensor;
 		const int iterations;
 
 	public:
-		Gyroscope(uint8_t port, int max_iter=3);
+		Gyroscop(uint8_t port, int max_iter=3);
 		void begin();
 		double getAngle();
 		void update();

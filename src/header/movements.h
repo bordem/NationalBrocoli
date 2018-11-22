@@ -4,7 +4,7 @@
 #include "types.h"
 #include "motor.h"
 #include "ultrasound.h"
-#include "gyroscope.h"
+#include "gyroscop.h"
 
 class Movements{
 	private:
@@ -14,11 +14,11 @@ class Movements{
 	public:
 		Movements(Motor* L, Motor* R);
 		void backward(float distance);
-		void forward(float distance, Ultrason&, Ultrason&);
+		void forward(float distance, Gyroscop&, Ultrasound&);
 		void stop();
 		void goAt(int speedMotorLeft, int speedMotorRight);
 		void turn(enum Pos direction);
-		void tweak(Gyroscope& gyro); 
+		void tweak(Gyroscop& gyro); 
 		float getSpeed();
 };
 

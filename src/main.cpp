@@ -3,7 +3,7 @@
 #include <Wire.h>
 #include <movements.h>
 #include <ultrasound.h>
-#include <gyroscope.h>
+#include <gyroscop.h>
 #include <robot.h>
 #include <camera.h>
 #include <pince.h>
@@ -14,16 +14,13 @@ int main(void ){
 
 	Motor mot1(SLOT_1, LEFT);
 	Motor mot2(SLOT_2, RIGHT);
-	Ultrason ultraLeft(PORT_6,11);
-	Ultrason ultraRight(PORT_8, 11);
+	Ultrasound ultra(PORT_6,11);
 	Movements move(&mot1, &mot2);
-	Gyroscope gyro(PORT_7, 3);
+	Gyroscop gyro(PORT_7, 3);
 //	gyro.begin();
 //	Pince pince(SLOT_4);
 
-	Robot robot(gyro, move, ultraLeft, ultraRight);
-
-
+	Robot robot(gyro, move, ultra);
 
 	robot.doPath();
 

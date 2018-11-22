@@ -1,27 +1,27 @@
-#include <gyroscope.h>
+#include <gyroscop.h>
 
 //sensors{MeGyro(ports[0]),MeGyro(ports[1])},
 
-Gyroscope::Gyroscope(uint8_t port, int max_iter):
+Gyroscop::Gyroscop(uint8_t port, int max_iter):
 sensor(MeGyro(port)),
 iterations(max_iter)
 {
 	this->begin();
 }
 
-void Gyroscope::update(){
+void Gyroscop::update(){
 	sensor.fast_update();
 //	delay(10);
 }
 
-void Gyroscope::begin(){
+void Gyroscop::begin(){
 	delay(500);
 	sensor.begin();
 	delay(500);
 }
 
-double Gyroscope::getAngle(){
+double Gyroscop::getAngle(){
 	this->update();
-	Serial.println(sensor.getAngleZ());
+	//Serial.println(sensor.getAngleZ());
 	return sensor.getAngleZ();
 }

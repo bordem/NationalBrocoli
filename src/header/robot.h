@@ -2,7 +2,7 @@
 #define DEF_ROBOT
 
 #include "types.h"
-#include "gyroscope.h"
+#include "gyroscop.h"
 #include "movements.h"
 #include "ultrasound.h"
 #include "motor.h"
@@ -10,14 +10,13 @@
 
 class Robot{
 	private:
-		Gyroscope& gyro;
+		Gyroscop& gyro;
 		Movements& move;
 		Camera cam;
-		Ultrason& ultraLeft;
-		Ultrason& ultraRight;
+		Ultrasound& ultra;
 
 	public:
-		Robot(Gyroscope& gyro, Movements& move, Ultrason& soudLeft, Ultrason& soudRight);
+		Robot(Gyroscop& gyro, Movements& move, Ultrasound& soud);
 		~Robot();
 		void turn90(enum Pos direction);
 		void doPath();

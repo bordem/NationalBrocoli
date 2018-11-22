@@ -1,8 +1,8 @@
 #include <ultrasound.h>
 
-Ultrason::Ultrason(int p, int max_iter):iterations(max_iter),sensor(p){
+Ultrasound::Ultrasound(int p, int max_iter):iterations(max_iter),sensor(p){
 }
-float Ultrason::readDistance(int n=1){
+float Ultrasound::readDistance(int n=1){
 	n = (n > iterations)? n : iterations;
 	int const tailleTableau=n;
 	float tableauDistance[tailleTableau];
@@ -30,7 +30,7 @@ float Ultrason::readDistance(int n=1){
 		return tableauDistance[0];
 	}
 }
-bool Ultrason::obstacleAt(float n){
+bool Ultrasound::obstacleAt(float n){
 	if(this->readDistance(3)<n)
 		return true;
 	return false;

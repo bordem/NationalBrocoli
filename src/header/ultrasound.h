@@ -4,13 +4,13 @@
 #include "types.h"
 #include <MeUltrasonicSensor.h>
 
-class Ultrason{
+class Ultrasound{
 	private:
 		MeUltrasonicSensor sensor;
 		const int iterations;
 
 	public:
-		Ultrason(int port, int max_iter);
+		Ultrasound(int port, int max_iter);
 		float readDistance(int n=1);
 		bool obstacleAt(float n);
 };

@@ -120,7 +120,7 @@ void Generator::generate(){
 	using namespace std;
 	auto prev=nodes.begin();
 	Direction robot = HAUT;
-	cout << "\tmove.forward(" << (double)BLOCK_SIZE << ", ultraLeft, ultraRight);" << endl;
+	cout << "\tmove.forward(" << (double)BLOCK_SIZE << ", gyro, ultra);" << endl;
 	for ( auto it=++(nodes.begin()); it != nodes.end(); it++){
 		cerr << "//(" << (int)prev->x << ", " << (int)prev->y << ") -> (" << (int)it->x << ", " << (int)it->y << ")" << endl;
 		Direction suiv = this->direction(*prev, *it);
@@ -128,7 +128,7 @@ void Generator::generate(){
 		orient(robot, suiv);
 		robot=suiv;
 		cout << "\tgyro.begin();" << endl;
-		cout << "\tmove.forward(" << distance * BLOCK_SIZE<< ", ultraLeft, ultraRight);" << endl;
+		cout << "\tmove.forward(" << distance * BLOCK_SIZE<< ", gyro, ultra);" << endl;
 		cout << "\tmove.tweak(gyro);" << endl;
 		prev=it;
 	}
@@ -166,5 +166,4 @@ void Generator::parse_file(){
 			::pair<char>(a,b)
 		);
 	}
-
 }
