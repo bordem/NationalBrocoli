@@ -17,11 +17,8 @@ void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ultra){
 			185 RPM +/-10%
 			DC 9.0 V
 	*/
-
-	//float time = 1 ;
 	float time = (distance*100)/this->getSpeed();// Seconde
 	uchar speed=200;//Vitesse a passer aux moteur
-
 	
 	float distance_near = 9;
 	float distance_far = 11;
@@ -29,72 +26,44 @@ void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ultra){
 		
 	unsigned long startTime = millis();
 	while ( (millis() - startTime) < time*1000  ){
-		float distance = 350;// ultra.readDistance(1);
+		float distance = ultra.readDistance(1);
 		float ajustement = 30;
 		float angle = gyro.getAngle();
-
 /*/
-		if ( distance < distance_max || distance > 399 ){ // Il y a un mur, on peut l'utiliser
-			Serial.print("Distance: ");
-			Serial.println(distance);
-			if ( distance < distance_near || distance > 399 ) { // En considérant que l'ultra est à gauche, sinon il faut inersé les variations de vitesse sur le moteur gauche et droit
-				Serial.println("motorLeft->forward(speed+ajustement);");
-				Serial.println("motorRight->forward(speed-ajustement);");
-			}
-			else if ( distance > distance_far ){
-				Serial.println("motorLeft->forward(speed-ajustement);");
-				Serial.println("motorRight->forward(speed+ajustement);");
-			}
-			else {
-				Serial.println("motorRight->forward(speed);");
-				Serial.println("motorLeft->forward(speed);");
-			}
+		Serial.print("Angle:");
+		Serial.println(angle);
+		if ( distance < 7 ){
+			Serial.println("Obstruction");
+			continue;
 		}
-		else { // On utliiser le gyro
-			Serial.print("Angle:");
-			Serial.println(angle);
-			if ( angle < 0 && angle < -5 ){
-				Serial.println("motorRight->forward(speed+ajustemnt);");
-				Serial.println("motorLeft->forward(speed-ajustemnt);");
-			}
-			else if ( angle > 0 && angle > 5 ){
-				Serial.println("motorRight->forward(speed-ajustement);");
-				Serial.println("motorLeft->forward(speed+ajustement);");
-			}
-			else {
-				Serial.println("motorRight->forward(speed);");
-				Serial.println("motorLeft->forward(speed);");
-			}
+		if ( angle < 0 && angle < -5 ){
+			Serial.println("motorRight->forward(speed+ajustemnt);");
+			Serial.println("motorLeft->forward(speed-ajustemnt);");
+		}
+		else if ( angle > 0 && angle < 5 ){
+			Serial.println("motorRight->forward(speed-ajustement);");
+			Serial.println("motorLeft->forward(speed+ajustement);");
+		}
+		else {
+			Serial.println("motorRight->forward(speed);");
+			Serial.println("motorLeft->forward(speed);");
 		}
 		delay(1000);
 /*/
-		if ( distance < distance_max || (int)distance == 400 ){ // Il y a un mur, on peut l'utiliser
-			if ( distance < distance_near || (int)distance == 400 ) { // En considérant que l'ultra est à gauche, sinon il faut inersé les variations de vitesse sur le moteur gauche et droit
-				motorLeft->forward(speed+ajustement);
-				motorRight->forward(speed-ajustement);
-			}
-			else if ( distance > distance_far ){
-				motorLeft->forward(speed-ajustement);
-				motorRight->forward(speed+ajustement);
-			}
-			else {
-				motorRight->forward(speed);
-				motorLeft->forward(speed);
-			}
+		if ( distance < 7 ){
+			break;
 		}
-		else { // On utliiser le gyro
-			if ( angle < 0 && angle < -5 ){
-				motorRight->forward(speed+ajustement);
-				motorLeft->forward(speed-ajustement);
-			}
-			else if ( angle > 0 && angle < 5 ){
-				motorRight->forward(speed-ajustement);
-				motorLeft->forward(speed+ajustement);
-			}
-			else {
-				motorRight->forward(speed);
-				motorLeft->forward(speed);
-			}
+		if ( angle < 0 && angle < -5 ){
+			motorRight->forward(speed+ajustement);
+			motorLeft->forward(speed-ajustement);
+		}
+		else if ( angle > 0 && angle < 5 ){
+			motorRight->forward(speed-ajustement);
+			motorLeft->forward(speed+ajustement);
+		}
+		else {
+			motorRight->forward(speed);
+			motorLeft->forward(speed);
 		}
 /**/
 	}
