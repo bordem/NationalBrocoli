@@ -12,10 +12,10 @@
 
 class Robot{
 	private:
-		Gyroscop& gyro;
-		Movements& move;
+		Gyroscop gyro;
+		Movements move;
 		Camera cam;
-		Ultrasound& ultra;
+		Ultrasound ultra;
 		Pince pince;
 		Arm bras;
 

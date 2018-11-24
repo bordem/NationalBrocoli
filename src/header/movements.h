@@ -16,9 +16,9 @@ class Movements{
 		void backward(float distance);
 		void forward(float distance, Gyroscop&, Ultrasound&);
 		void stop();
-		void goAt(int speedMotorLeft, int speedMotorRight);
+		void goAt(uchar speedMotorLeft, uchar speedMotorRight);
 		void turn(enum Pos direction);
-		void tweak(Gyroscop& gyro); 
+//		void tweak(Gyroscop& gyro); 
 		float getSpeed();
 };
 

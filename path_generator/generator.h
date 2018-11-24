@@ -21,11 +21,11 @@ class Generator{
 	Generator(std::string path);
 	~Generator();
 	void generate();
-	Direction direction(::pair<char> A, ::pair<char> B);
+	Direction direction(::pair<int> A, ::pair<int> B);
 
  private:
 	std::fstream file;
 	void parse_file();	
-	std::vector<::pair<char>> nodes;
+	std::vector<::pair<int>> nodes;
 	const double BLOCK_SIZE=0.4;
 };

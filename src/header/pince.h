@@ -7,7 +7,6 @@
 class Pince{
 	private:
 		MeEncoderOnBoard motor;
-		uint8_t port;
 
 	public:
 		Pince(uint8_t port);

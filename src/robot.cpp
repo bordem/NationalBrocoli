@@ -36,9 +36,8 @@ void Robot::turn90(enum Pos direction){
 void Robot::findObject(){
 	Serial.print("Je commence le reperage");
 	pince.open();
-	while (!ultra.obstacleAt(17)){
-
-		static int i = 0;
+	int i = 0;
+	while (!ultra.obstacleAt(17)){	
 		uint16_t blocks;
 		char buf[32];
 		// grab blocks!

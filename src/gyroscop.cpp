@@ -11,18 +11,15 @@ iterations(max_iter)
 }
 
 void Gyroscop::update(){
-	sensor.fast_update();
-//	delay(10);
+	sensor.update();
 }
 
 void Gyroscop::begin(){
 	delay(500);
 	sensor.begin();
-	delay(500);
 }
 
 double Gyroscop::getAngle(){
 	this->update();
-	//Serial.println(sensor.getAngleZ());
 	return (int)(sensor.getAngleZ()+0.5); // round to closest int
 }
