@@ -6,5 +6,6 @@ makefile
 .gcc-flags.json
 .travis.yml
 lib/MakeBlockDrive
+lib/Pixy
 path_generator/generator
 path_generator/obj/*
