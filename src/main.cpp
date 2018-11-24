@@ -7,6 +7,7 @@
 #include <robot.h>
 #include <camera.h>
 #include <pince.h>
+#include <arm.h>
 
 int main(void ){
 	init();
@@ -22,7 +23,7 @@ int main(void ){
 
 	Robot robot(gyro, move, ultra);
 
-	robot.doPath();
+	robot.findObject();
 
 	while ( true ){
 /*		Serial.print("( ");

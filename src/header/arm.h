@@ -1,17 +1,18 @@
-#ifndef DEF_PINCE
-#define DEF_PINCE
+#ifndef DEF_ARM
+#define DEF_ARM
 
 #include <MeEncoderOnBoard.h>
 #include "types.h"
 
-class Pince{
+class Arm{
 	private:
 		MeEncoderOnBoard motor;
 		uint8_t port;
 
 	public:
-		Pince(uint8_t port=4);
-		void close();
-		void open();
+		Arm(uint8_t port=4);
+		void up();
+		void down();
+		void down(int);
 };
 #endif

@@ -9,7 +9,6 @@ float Ultrasound::readDistance(int n=1){
 	for(int i=0;i<tailleTableau;i++)
 		tableauDistance[i]=sensor.distanceCm();
 
-
 	if(n >1){
 		for(int i=1; i<n-1;i++){
 	        int min = i;
@@ -24,6 +23,8 @@ float Ultrasound::readDistance(int n=1){
 				tableauDistance[min]=swt;
 			}
 		}
+		Serial.print("Ultrason : ");
+		Serial.println(tableauDistance[tailleTableau/2]);
 		return tableauDistance[tailleTableau/2];
 	}
 	else{
@@ -31,7 +32,7 @@ float Ultrasound::readDistance(int n=1){
 	}
 }
 bool Ultrasound::obstacleAt(float n){
-	if(this->readDistance(3)<n)
+	if(this->readDistance(1)<n)
 		return true;
 	return false;
 }
