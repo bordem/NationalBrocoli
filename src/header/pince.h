@@ -10,7 +10,7 @@ class Pince{
 		uint8_t port;
 
 	public:
-		Pince(uint8_t port=4);
+		Pince(uint8_t port);
 		void close();
 		void open();
 };

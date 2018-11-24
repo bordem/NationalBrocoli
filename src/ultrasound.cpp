@@ -23,8 +23,8 @@ float Ultrasound::readDistance(int n=1){
 				tableauDistance[min]=swt;
 			}
 		}
-		Serial.print("Ultrason : ");
-		Serial.println(tableauDistance[tailleTableau/2]);
+		//Serial.print("Ultrason : ");
+		//Serial.println(tableauDistance[tailleTableau/2]);
 		return tableauDistance[tailleTableau/2];
 	}
 	else{
