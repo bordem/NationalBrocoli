@@ -36,9 +36,8 @@ void Robot::turn90(enum Pos direction){
 void Robot::findObject(){
 	Serial.print("Je commence le reperage");
 	pince.open();
+	int i = 0;
 	while (true){
-
-		static int i = 0;
 		uint16_t blocks;
 		char buf[32];
 		// grab blocks!
@@ -57,8 +56,8 @@ void Robot::findObject(){
 			// do this (print) every 50 frames because printing every
 			// frame would bog down the Arduino
 			if (i%50==0){
-				//sprintf(buf, "Detected %d:\n", blocks);
-				Serial.print(buf);
+				sprintf(buf, "Detected %d:\n", blocks);
+				//Serial.print(buf);
 				for (uint8_t j=0; j<blocks; j++){
 					sprintf(buf, "	block %d: ", j);
 					//Serial.print(buf);

@@ -122,18 +122,18 @@ void Generator::generate(){
 	Direction robot = HAUT;
 	cout << "\tmove.forward(" << (double)BLOCK_SIZE << ", gyro, ultra);" << endl;
 	for ( auto it=++(nodes.begin()); it != nodes.end(); it++){
-		cerr << "//(" << (int)prev->x << ", " << (int)prev->y << ") -> (" << (int)it->x << ", " << (int)it->y << ")" << endl;
+		cerr << "//(" << (int)prev->x << ", " << prev->y << ") -> (" << it->x << ", " << it->y << ")" << endl;
 		Direction suiv = this->direction(*prev, *it);
 		int distance = max(abs(it->x-prev->x), abs(it->y - prev->y));
 		orient(robot, suiv);
 		robot=suiv;
 		cout << "\tgyro.begin();" << endl;
-		cout << "\tmove.forward(" << distance * BLOCK_SIZE<< ", gyro, ultra);" << endl;
+		cout << "\tmove.forward(" << distance * BLOCK_SIZE << ", gyro, ultra);" << endl;
 		prev=it;
 	}
 }
 
-Direction Generator::direction(::pair<char> A, ::pair<char> B){
+Direction Generator::direction(::pair<int> A, ::pair<int> B){
 	int dx = A.x - B.x;	
 	int dy = A.y - B.y;
 	if ( dx > 0 ){
@@ -162,7 +162,7 @@ void Generator::parse_file(){
 		int a=atoi(pos1.c_str()),
 			b=atoi(pos2.c_str());
 		nodes.push_back(
-			::pair<char>(a,b)
+			::pair<int>(a,b)
 		);
 	}
 }

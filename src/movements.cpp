@@ -26,13 +26,13 @@ void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ultra){
 		
 	unsigned long startTime = millis();
 	while ( (millis() - startTime) < time*1000  ){
-		float distance = ultra.readDistance(1);
+		bool mur = ultra.obstacleAt(7);
 		float ajustement = 30;
 		float angle = gyro.getAngle();
 /*/
 		Serial.print("Angle:");
 		Serial.println(angle);
-		if ( distance < 7 ){
+		if ( mur ){
 			Serial.println("Obstruction");
 			continue;
 		}
@@ -50,7 +50,7 @@ void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ultra){
 		}
 		delay(1000);
 /*/
-		if ( distance < 7 ){
+		if ( mur ){
 			break;
 		}
 		if ( angle < 0 && angle < -5 ){
@@ -70,7 +70,7 @@ void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ultra){
 	this->stop();
 }
 
-void Movements::tweak(Gyroscop& gyro){
+/*void Movements::tweak(Gyroscop& gyro){
 	delay(500);
 	float angle = gyro.getAngle();
 	if ( angle < 0 ){
@@ -82,7 +82,7 @@ void Movements::tweak(Gyroscop& gyro){
 		while ( gyro.getAngle() > 0 );
 	}
 	this->stop();
-}
+}*/
 
 void Movements::backward(float distance){
 	/*
