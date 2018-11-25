@@ -70,7 +70,7 @@ void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ultra){
 	this->stop();
 }
 
-/*void Movements::tweak(Gyroscop& gyro){
+void Movements::tweak(Gyroscop& gyro){
 	delay(500);
 	float angle = gyro.getAngle();
 	if ( angle < 0 ){
@@ -82,7 +82,7 @@ void Movements::forward(float distance, Gyroscop& gyro, Ultrasound& ultra){
 		while ( gyro.getAngle() > 0 );
 	}
 	this->stop();
-}*/
+}
 
 void Movements::backward(float distance){
 	/*

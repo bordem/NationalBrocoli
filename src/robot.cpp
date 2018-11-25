@@ -37,6 +37,7 @@ void Robot::findObject(){
 	Serial.print("Je commence le reperage");
 	pince.open();
 	int i = 0;
+	float distance = ultra.readDistance();
 	while (!ultra.obstacleAt(17)){	
 		uint16_t blocks;
 		char buf[32];
@@ -122,90 +123,10 @@ void Robot::findObject(){
 	}
 	//Serial.println("Fermer la pince");
 	move.stop();
-
-	// int xTresor;
-	// int yTresor;
-	// int widthTresor;
-	// int hightTresor;
-	//
-	// int centreHorizontalTresor;
-	// int centreVerticalTresor;
-	// for(int k=0;k<1;k++){
-	// 	uint16_t blocks;
-	// 	char buf[32];
-	// 	static int i=0;
-	// 	// grab blocks!
-	// 	blocks = cam.getPixy().getBlocks();
-	// 	int indiceGROS = 0;
-	// 	int GROS=0;
-	// 	float tabTailleObjets[100]={0};
-	// 	int tabDePince[2]={0};
-	// 	if (blocks){
-	// 		int nb_p=0;
-	// 		i++;
-	// 		// do this (print) every 50 frames because printing every
-	// 		// frame would bog down the Arduino
-	// 		if (i%50==0){
-	// 			//sprintf(buf, "Detected %d:\n", blocks);
-	// 			//Serial.print(buf);
-	// 			for (uint8_t j=0; j<blocks; j++){
-	// 				if(cam.getPixy().blocks[j].signature == 1 || cam.getPixy().blocks[j].signature == 2 || cam.getPixy().blocks[j].signature == 3){
-	// 					tabTailleObjets[j] = cam.getPixy().blocks[j].width*cam.getPixy().blocks[j].height;
-	// 				}
-	// 			}
-	// 			//TRI POUR TROUVER L'OBJET LE PLUS GROS, CELUI QUI NOUS INTERESSE
-	// 			//Serial.print("j'ai mes pinces en vue" );
-	// 			for(int k=0;k<100;k++)
-	// 			{
-	// 				if(tabTailleObjets[k]>GROS){
-	// 					GROS=tabTailleObjets[k];
-	// 					xTresor = cam.getPixy().blocks[indiceGROS].x;
-	// 					yTresor = cam.getPixy().blocks[indiceGROS].y;
-	// 					widthTresor = cam.getPixy().blocks[indiceGROS].width;
-	// 					hightTresor = cam.getPixy().blocks[indiceGROS].height;
-	// 					centreHorizontalTresor = xTresor+(widthTresor/2);
-	// 					centreVerticalTresor = yTresor+(hightTresor/2);
-	// 					}
-	// 			}
-	// 		}
-	// 	}
-	// }
-	// int yPince = 0;
-	// while(centreVerticalTresor>yPince){
-	//
-	// 	static int i = 0;
-	// 	uint16_t blocks;
-	// 	char buf[32];
-	// 	// grab blocks!
-	// 	blocks = cam.getPixy().getBlocks();
-	// 	int indiceGROS = 0;
-	// 	int GROS=0;
-	// 	float tabTailleObjets[100]={0};
-	// 	int tabDePince[2]={0};
-	// 	if (blocks){
-	// 		int nb_p=0;
-	// 		i++;
-	// 		// do this (print) every 50 frames because printing every
-	// 		// frame would bog down the Arduino
-	// 		if (i%50==0){
-	// 			//sprintf(buf, "Detected %d:\n", blocks);
-	// 			//Serial.print(buf);
-	// 			for (uint8_t j=0; j<blocks; j++){
-	// 				if(cam.getPixy().blocks[j].signature == 7)
-	// 				{
-	// 					tabDePince[nb_p]=j;
-	// 					nb_p++;
-	// 				}
-	// 			}
-	// 			//TRI POUR TROUVER L'OBJET LE PLUS GROS, CELUI QUI NOUS INTERESSE
-	// 			//Serial.print("j'ai mes pinces en vue" );
-	// 			bras.down(100);
-	// 			yPince =cam.getPixy().blocks[tabDePince[0]].y;
-	// 		}
-	// 	}
-	// }
 	bras.down(200);
 	pince.close();
 	delay(1000);
 	bras.up(1000);
+	Serial.println(distance/100);
+	move.backward(distance/100); // getSpeed no renvoie la vitesse du robot, en multipliant par le temp de déplacement on obtient la distance
 }

@@ -25,8 +25,19 @@ void Robot::doPath(){
 	this->turn90(RIGHT);
 	gyro.begin();
 	move.forward(0.4, gyro, ultra);
-//(-2, 3) -> (0, 3)
+//(-2, 3) -> (-2, 2)
+	gyro.begin();
+	move.forward(0.4, gyro, ultra);
+//(-2, 2) -> (-2, 3)
 	this->turn90(LEFT);
+	gyro.begin();
+	findObject();
+	move.tweak(gyro);
+	this->turn90(LEFT);
+	gyro.begin();
+	move.forward(0.4, gyro, ultra);
+//(-2, 3) -> (0, 3)
+	this->turn90(RIGHT);
 	gyro.begin();
 	move.forward(0.8, gyro, ultra);
 //(0, 3) -> (0, 4)

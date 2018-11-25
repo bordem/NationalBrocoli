@@ -23,17 +23,18 @@ int main(void ){
 
 	Robot robot(gyro, move, ultra);
 
+//	robot.doPath();
 	robot.findObject();
 
-	while ( true ){
-/*		Serial.print("( ");
+/*	while ( true ){
+		Serial.print("( ");
 		Serial.print(ultraLeft.readDistance());
 		Serial.print(", ");
 		Serial.print(ultraRight.readDistance());
 		Serial.println(" )");
 	//	Serial.println(gyro.getAngle());
-		delay(500);*/
-	}
+		delay(500);
+	}*/
 
 
 	return 0;
