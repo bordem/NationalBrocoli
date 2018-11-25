@@ -21,5 +21,6 @@ class Robot{
 		Robot(uchar port_gyro,uchar port_sound,uchar port_M1,uchar port_M2);
 		void doPath();
 		void findObject();
+		void turn90(Pos direction);
 };
 #endif

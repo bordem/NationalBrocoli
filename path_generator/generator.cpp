@@ -9,7 +9,8 @@ Generator::Generator(string path){
 	this->parse_file();
 	cout << "#include <robot.h>" << endl;
 	cout << endl << "void Robot::doPath(){" << endl;
-	cout << "\tmove.forward("<<BLOCK_SIZE << ");" << endl;
+	cout << "\tgyro.begin();" << endl;
+	cout << "\tmove.forward("<<BLOCK_SIZE << ", ultra, gyro);" << endl;
 	this->generate();
 	cout << "}" << endl;
 }
@@ -36,56 +37,56 @@ void orient(Direction robot, Direction next){
 		case HAUT:
 			switch ( next ){
 				case BAS:
-					cout << "\tturn90(RIGHT);" << endl;
-					cout << "\tturn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 				break;
 				case DROITE:
-					cout << "\tturn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 				break;
 				case GAUCHE:
-					cout << "\tturn90(LEFT);" << endl;
+					cout << "\tthis->turn90(LEFT);" << endl;
 				break;
 			}
 		break;
 		case BAS:
 			switch ( next ){
 				case HAUT:
-					cout << "\tturn90(RIGHT);" << endl;
-					cout << "\tturn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 				break;
 				case DROITE:
-					cout << "\tturn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 				break;
 				case GAUCHE:
-					cout << "\tturn90(LEFT);" << endl;
+					cout << "\tthis->turn90(LEFT);" << endl;
 				break;
 			}
 		break;
 		case DROITE:
 			switch ( next ){
 				case HAUT:
-					cout << "\tturn90(LEFT);" << endl;
+					cout << "\tthis->turn90(LEFT);" << endl;
 				break;
 				case BAS:
-					cout << "\tturn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 				break;
 				case GAUCHE:
-					cout << "\tturn90(RIGHT);" << endl;
-					cout << "\tturn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 				break;
 			}
 		break;
 		case GAUCHE:
 			switch ( next ){
 				case HAUT:
-					cout << "\tturn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 				break;
 				case BAS:
-					cout << "\tturn90(LEFT);" << endl;
+					cout << "\tthis->turn90(LEFT);" << endl;
 				break;
 				case DROITE:
-					cout << "\tturn90(RIGHT);" << endl;
-					cout << "\tturn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 				break;
 			}
 		break;
@@ -117,19 +118,14 @@ Direction Generator::direction(::pair A, ::pair B){
 void Generator::generate(){
 	Direction robot=HAUT;
 	for ( auto it=++nodes.begin(); it != nodes.end(); it++ ){
-
 		cerr << "\t//(" << (it-1)->x << ", " << (it-1)->y << ") -> (" << it->x << ", " << it->y << ")" << endl;
 		::pair currPoint = *(it-1);
 		::pair nextPoint = *(it);
-		
 		Direction next = direction(currPoint, nextPoint);
-
 		orient(robot, next); 
-		
 		robot=next;
-	
 		int distance = abs((currPoint.x - nextPoint.x) + ( currPoint.y - nextPoint.y ));
-
-		cout << "\tmove.forward(" << BLOCK_SIZE*distance << ", ultra, gyro)" << endl;
+		cout << "\tgyro.begin();" << endl;
+		cout << "\tmove.forward(" << BLOCK_SIZE*distance << ", ultra, gyro);" << endl;
 	}
 }

@@ -15,5 +15,6 @@ void Gyroscop::update(){
 }
 
 double Gyroscop::getAngle(){
-	return (int)(sensor.getAngleX() + 0.5);
+	update();
+	return (int)(sensor.getAngleZ() + 0.5);
 }

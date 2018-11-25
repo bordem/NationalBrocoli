@@ -4,17 +4,17 @@ Motor::Motor(uchar port,  Pos position ):motor(port),position(position){
 
 }
 void Motor::forward(uchar speed){
-	if(position = LEFT){
-		motor.setMotorPwm(-200);
+	if(position == LEFT){
+		motor.setMotorPwm(-speed);
 	}else{
-		motor.setMotorPwm(200);
+		motor.setMotorPwm(speed);
 	}
 }
 void Motor::backward(uchar speed){
-	if(position = LEFT){
-		motor.setMotorPwm(200);
+	if(position == LEFT){
+		motor.setMotorPwm(speed);
 	}else{
-		motor.setMotorPwm(-200);
+		motor.setMotorPwm(-speed);
 	}
 }
 void Motor::stop(){

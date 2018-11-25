@@ -8,7 +8,7 @@ class Movements {
  private:
 	Motor motorL;
 	Motor motorR;
-	const float speed=42;
+	const float speed=37.5;
 
  public:
 	Movements(uchar portML, uchar portMR);
@@ -18,4 +18,5 @@ class Movements {
 	float getSpeed() const;
 	void goAt(uchar speedL, uchar speedR);
 	void turn90(Pos dir, uchar speed=200);
+	void calcSpeed(Ultrasound, Gyroscop);
 };

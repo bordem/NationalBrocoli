@@ -8,9 +8,7 @@ bras(SLOT_3),
 pince(SLOT_4),
 cam()
 {}
-void Robot::doPath(){
 
-}
 void Robot::findObject(){
 	pince.open();
 	float distanceBegin = ultra.readDistance(3);
@@ -81,4 +79,15 @@ void Robot::findObject(){
 	pince.close(1000);
 	bras.up(1000);
 	move.backward(distanceBegin);
+}
+
+
+void Robot::turn90(Pos direction){
+	gyro.begin();
+	move.turn90(direction, 100);
+	if ( direction == RIGHT )
+		while ( gyro.getAngle() > -90 );
+	else
+		while ( gyro.getAngle() < 90 );
+	move.stop();
 }

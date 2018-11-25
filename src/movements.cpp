@@ -13,13 +13,13 @@ float Movements::getSpeed() const {
 }
 
 void Movements::turn90(Pos dir, uchar speed){
-	if ( dir == LEFT ){
+	if ( dir == RIGHT ){
 		motorL.forward(speed);
-		motorR.forward(speed);
+		motorR.backward(speed);
 	}
 	else {
 		motorR.forward(speed);
-		motorL.forward(speed);
+		motorL.backward(speed);
 	}
 }
 
@@ -44,25 +44,25 @@ void Movements::backward(float distance){
 }
 
 void Movements::forward(float distance, Ultrasound ultra, Gyroscop gyro){
-	int time = distance * this->getSpeed();
-	int start_time = millis();
+	int time = distance / this->getSpeed() * 1000;
 	uchar speed = 200;
 	int correction=30;
+	int start_time = millis();
 	while ( ( millis() - start_time ) < time ){
 
 		if ( ultra.obstacleAt(10) ){
 			break;
 		}
 
-		int distance = gyro.getAngle();
+		int angle = gyro.getAngle();
 
-		if ( distance < 0 && distance > -3 ){
-			motorL.forward(speed+correction);
-			motorR.forward(speed-correction);
-		}
-		else if ( distance > 0 && distance < 3 ){
+		if ( angle < 0 ){
 			motorL.forward(speed-correction);
 			motorR.forward(speed+correction);
+		}
+		else if ( angle > 0 ){
+			motorL.forward(speed+correction);
+			motorR.forward(speed-correction);
 		}
 		else {
 			motorL.forward(speed);
@@ -70,4 +70,38 @@ void Movements::forward(float distance, Ultrasound ultra, Gyroscop gyro){
 		}
 	}
 	this->stop();
+}
+
+
+
+void Movements::calcSpeed(Ultrasound ultra, Gyroscop gyro){
+	int start_time = millis();
+	int distance = ultra.readDistance() -10;
+	int correction = 30;
+	int speed = 200;
+	while ( ! ultra.obstacleAt(10) ){
+		int angle = gyro.getAngle();
+		if ( angle < 0 ){
+			motorL.forward(speed-correction);
+			motorR.forward(speed+correction);
+		}
+		else if ( angle > 0 ){
+			motorL.forward(speed+correction);
+			motorR.forward(speed-correction);
+		}
+		else {
+			motorL.forward(speed);
+			motorR.forward(speed);
+		}
+	}
+	motorL.stop();
+	motorR.stop();
+	int time = millis() - start_time;
+	float speedCalc = distance / ( (float) time / 1000);
+	Serial.print("Distance: ");
+	Serial.println(distance);
+	Serial.print("Temps: ");
+	Serial.println(time);
+	Serial.print("Vitesse: ");
+	Serial.println(speedCalc); 
 }
