@@ -7,5 +7,6 @@ makefile
 .travis.yml
 lib/MakeBlockDrive
 lib/Pixy
+src/do_path.cpp
 path_generator/generator
 path_generator/obj/*
