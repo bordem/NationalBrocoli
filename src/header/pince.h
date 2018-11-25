@@ -11,7 +11,7 @@ class Pince{
 		void open();
 		void close();
 		void stop();
-		void open(int);
-		void close(int);
+		void open(float);
+		void close(float);
 };
 #endif

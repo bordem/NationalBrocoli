@@ -10,40 +10,34 @@ cam()
 {}
 
 void Robot::findObject(){
-	pince.open();
+	pince.open(1);
 	float distanceBegin = ultra.readDistance(3);
-	while(!ultra.obstacleAt(17)){
-		static int i = 0;
-		int j;
+	int i = 0;
+	while( !ultra.obstacleAt(17) ){
+		Serial.println("Boucle");
 		uint16_t blocks;
 		char buf[32];
 		blocks = cam.getPixy().getBlocks();
-
+		Serial.println("Post cam");
+		i++;
 		int tailleGrosObjet = 0;
 		int indiceGrosObjet = 0;
-
 		int indicePince1 = 0;
 		int indicePince2 = 0;
 		int nb_pinces = 0;
-
-		if (blocks)
-		{
-		    i++;
+		if (blocks){
+			Serial.println("i%2 == 0");
 		    // do this (print) every 50 frames because printing every
 		    // frame would bog down the Arduino
-		    if (i%2==0)
-		    {
-		      	for (j=0; j<blocks; j++)
-		      	{
-		        	if(cam.getPixy().blocks[j].signature==1);
-					{
-						if(cam.getPixy().blocks[j].width*cam.getPixy().blocks[j].height>tailleGrosObjet){
+		    if (i%2==0){
+		      	for (int j=0; j<blocks; j++){
+		        	if(cam.getPixy().blocks[j].signature==1){
+						if( (cam.getPixy().blocks[j].width * cam.getPixy().blocks[j].height) > tailleGrosObjet ){
 							tailleGrosObjet = cam.getPixy().blocks[j].width*cam.getPixy().blocks[j].height;
 							indiceGrosObjet = j;
 						}
 					}
-					if(cam.getPixy().blocks[j].signature==7);
-					{
+					if(cam.getPixy().blocks[j].signature==7){
 						if(nb_pinces==0){
 							indicePince1 = j;
 						}else{
@@ -69,15 +63,15 @@ void Robot::findObject(){
 				}
 				else{
 					move.stop();
-					bras.down(100);
+					bras.down(0.1);
 				}
 		    }
 		}
 	}
 	move.stop();
-	bras.down(200);
-	pince.close(1000);
-	bras.up(1000);
+	bras.down(0.2);
+	pince.close(1);
+	bras.up(1);
 	move.backward(distanceBegin);
 }
 

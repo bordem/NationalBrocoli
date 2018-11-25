@@ -7,7 +7,8 @@ int main(){
 	init();
 	Serial.begin(115200);
 	Robot robot(PORT_7, PORT_6, SLOT_1, SLOT_2);
-	robot.doPath();
+//	robot.doPath();
+	robot.findObject();
 	while (true);
 	return 0;
 }

@@ -11,7 +11,7 @@ class Arm{
 		void up();
 		void down();
 		void stop();
-		void up(int);
-		void down(int);
+		void up(float);
+		void down(float);
 };
 #endif

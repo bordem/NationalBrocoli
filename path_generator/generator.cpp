@@ -55,10 +55,10 @@ void orient(Direction robot, Direction next){
 					cout << "\tthis->turn90(RIGHT);" << endl;
 				break;
 				case DROITE:
-					cout << "\tthis->turn90(RIGHT);" << endl;
+					cout << "\tthis->turn90(LEFT);" << endl;
 				break;
 				case GAUCHE:
-					cout << "\tthis->turn90(LEFT);" << endl;
+					cout << "\tthis->turn90(RIGHT);" << endl;
 				break;
 			}
 		break;

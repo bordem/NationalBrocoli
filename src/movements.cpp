@@ -26,6 +26,7 @@ void Movements::turn90(Pos dir, uchar speed){
 void Movements::stop(){
 	motorR.stop();
 	motorL.stop();
+	Serial.println("STOP");
 }
 
 void Movements::goAt(uchar speedL, uchar speedR){
@@ -44,10 +45,11 @@ void Movements::backward(float distance){
 }
 
 void Movements::forward(float distance, Ultrasound ultra, Gyroscop gyro){
-	int time = distance / this->getSpeed() * 1000;
+	Serial.println("Avancer");
+	unsigned int time = distance / this->getSpeed() * 1000;
 	uchar speed = 200;
 	int correction=30;
-	int start_time = millis();
+	unsigned int start_time = millis();
 	while ( ( millis() - start_time ) < time ){
 
 		if ( ultra.obstacleAt(10) ){
@@ -57,14 +59,17 @@ void Movements::forward(float distance, Ultrasound ultra, Gyroscop gyro){
 		int angle = gyro.getAngle();
 
 		if ( angle < 0 ){
+			Serial.println("GAUCHE");
 			motorL.forward(speed-correction);
 			motorR.forward(speed+correction);
 		}
 		else if ( angle > 0 ){
+			Serial.println("DROITE");
 			motorL.forward(speed+correction);
 			motorR.forward(speed-correction);
 		}
 		else {
+			Serial.println("NORMAL");
 			motorL.forward(speed);
 			motorR.forward(speed);
 		}
@@ -98,10 +103,4 @@ void Movements::calcSpeed(Ultrasound ultra, Gyroscop gyro){
 	motorR.stop();
 	int time = millis() - start_time;
 	float speedCalc = distance / ( (float) time / 1000);
-	Serial.print("Distance: ");
-	Serial.println(distance);
-	Serial.print("Temps: ");
-	Serial.println(time);
-	Serial.print("Vitesse: ");
-	Serial.println(speedCalc); 
 }

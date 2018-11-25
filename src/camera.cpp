@@ -1,7 +1,7 @@
 #include "camera.h"
 
 Camera::Camera(){
-
+	pixy.init();
 }
 Pixy Camera::getPixy(){
 	return this->pixy;
