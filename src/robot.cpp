@@ -1,9 +1,9 @@
 #include "robot.h"
 
-Robot::Robot(Gyroscop gyro, Movements move,Ultrasound sound):
-gyro(gyro),
-move(move),
-ultra(sound),
+Robot::Robot(uchar port_gyro,uchar port_sound,uchar port_M1,uchar port_M2):
+gyro(port_gyro,1),
+ultra(port_sound,1),
+move(port_M1,port_M2),
 bras(SLOT_3),
 pince(SLOT_4),
 cam()
@@ -61,9 +61,9 @@ void Robot::findObject(){
 					}
 		      	}
 				if(nb_pinces>1){
-					if(cam.getPixy().blocks[indicePince1].x+cam.getPixy().blocks[indicePince1].width>cam.getPixy().blocks[inindiceGrosObjet].x){
+					if(cam.getPixy().blocks[indicePince1].x+cam.getPixy().blocks[indicePince1].width>cam.getPixy().blocks[indiceGrosObjet].x){
 						move.goAt(90,150);
-					}else if(cam.getPixy().blocks[indicePince2].x<cam.getPixy().blocks[inindiceGrosObjet].x+cam.getPixy().blocks[inindiceGrosObjet].width){
+					}else if(cam.getPixy().blocks[indicePince2].x<cam.getPixy().blocks[indiceGrosObjet].x+cam.getPixy().blocks[indiceGrosObjet].width){
 						move.goAt(150,90);
 					}else{
 						move.goAt(90,90);

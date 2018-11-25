@@ -18,7 +18,7 @@ class Robot{
 		Ultrasound ultra;
 
 	public:
-		Robot(Gyroscop gyro, Movements move,Ultrasound sound);
+		Robot(uchar port_gyro,uchar port_sound,uchar port_M1,uchar port_M2);
 		void doPath();
 		void findObject();
 };
