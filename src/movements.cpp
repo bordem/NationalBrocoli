@@ -1,14 +1,14 @@
 #include <movements.h>
 
 
-Movements::Movements(uchar portML, uchar portMR)
+Movements::Movements(uchar portML, uchar portMR):
 	motorL(portML, LEFT),
 	motorR(portMR, RIGHT)
 {}
 
 
 
-void Movements::getSpeed() const {
+float Movements::getSpeed() const {
 	return speed;
 }
 
@@ -23,18 +23,18 @@ void Movements::turn90(Pos dir, uchar speed){
 	}
 }
 
-void Movement::stop(){
+void Movements::stop(){
 	motorR.stop();
 	motorL.stop();
 }
 
-void Movement::goAt(uchar speedL, uchar speedR){
+void Movements::goAt(uchar speedL, uchar speedR){
 	motorL.forward(speedL);
 	motorR.forward(speedR);
 }
 
 void Movements::backward(float distance){
-	int time = distance * this->getSpeed(); 
+	int time = distance * this->getSpeed();
 	int start_time = millis();
 	uchar speed = 200;
 	motorR.backward(speed);
@@ -43,8 +43,8 @@ void Movements::backward(float distance){
 	this->stop();
 }
 
-void Movements::foraward(float distance, Ultrasound ultra, Gyroscope gyro){
-	int time = distance * this->getSpeed(); 
+void Movements::forward(float distance, Ultrasound ultra, Gyroscop gyro){
+	int time = distance * this->getSpeed();
 	int start_time = millis();
 	uchar speed = 200;
 	int correction=30;
@@ -53,7 +53,7 @@ void Movements::foraward(float distance, Ultrasound ultra, Gyroscope gyro){
 		if ( ultra.obstacleAt(10) ){
 			break;
 		}
-		
+
 		int distance = gyro.getAngle();
 
 		if ( distance < 0 && distance > -3 ){
